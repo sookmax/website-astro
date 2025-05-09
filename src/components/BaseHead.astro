@@ -1,7 +1,4 @@
 ---
-// Import the global.css file here so that it is included on
-// all pages through the use of the <BaseHead /> component.
-import "../styles/global.css";
 import { SITE_TITLE } from "../consts";
 
 interface Props {
@@ -28,20 +25,15 @@ const { title, description, image = "/blog-placeholder-1.jpg" } = Astro.props;
 />
 <meta name="generator" content={Astro.generator} />
 
-<!-- Font preloads -->
+<!-- Font -->
 <link
-  rel="preload"
-  href="/fonts/atkinson-regular.woff"
-  as="font"
-  type="font/woff"
-  crossorigin
+  rel="preconnect"
+  href="https://cdn.fontshare.com"
+  cross-origin="anonymous"
 />
 <link
-  rel="preload"
-  href="/fonts/atkinson-bold.woff"
-  as="font"
-  type="font/woff"
-  crossorigin
+  rel="stylesheet"
+  href="https://api.fontshare.com/v2/css?f[]=satoshi@700,500,400&display=swap"
 />
 
 <!-- Canonical URL -->
