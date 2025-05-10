@@ -1,0 +1,23 @@
+---
+import RootLayout from "@/layouts/RootLayout.astro";
+import type { GetStaticPaths } from "astro";
+import { render } from "astro:content";
+import { getCollection } from "astro:content";
+
+export const getStaticPaths = (async () => {
+  const experiences = await getCollection("experience");
+  return experiences.map((experience) => ({
+    params: {
+      id: experience.id,
+    },
+    props: { experience },
+  }));
+}) satisfies GetStaticPaths;
+
+const { experience } = Astro.props;
+const { Content } = await render(experience);
+---
+
+<RootLayout>
+  <Content />
+</RootLayout>

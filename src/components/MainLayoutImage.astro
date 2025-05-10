@@ -1,0 +1,16 @@
+---
+import { Image } from "astro:assets";
+import avatar2dImage from "@/images/avatar_2d.png";
+---
+
+<a
+  href="/"
+  class="relative mx-auto block w-48 overflow-hidden rounded-lg bg-slate-100 shadow-xl shadow-slate-200 sm:w-64 sm:rounded-xl lg:w-auto lg:rounded-2xl"
+  aria-label="Homepage"
+>
+  <Image class="w-full" src={avatar2dImage} alt="main avatar picture" />
+  <div
+    class="absolute inset-0 rounded-lg ring-1 ring-black/10 ring-inset sm:rounded-xl lg:rounded-2xl"
+  >
+  </div>
+</a>

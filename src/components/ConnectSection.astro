@@ -1,0 +1,44 @@
+---
+import type { HTMLAttributes } from "astro/types";
+import TinyWaveFormIcon from "./TinyWaveFormIcon.astro";
+import GithubSvg from "@/images/github.svg";
+import LinkedInSvg from "@/images/linkedin.svg";
+
+type Props = HTMLAttributes<"section">;
+---
+
+<section {...Astro.props}>
+  <h2
+    class="sr-only flex items-center font-mono text-sm/7 font-medium text-slate-900 lg:not-sr-only"
+  >
+    <TinyWaveFormIcon
+      colors={["fill-slate-300", "fill-primary-base"]}
+      class="h-2.5 w-2.5"
+    />
+    <span class="ml-2.5">Connect</span>
+  </h2>
+  <div
+    class="h-px bg-linear-to-r from-slate-200/0 via-slate-200 to-slate-200/0 lg:hidden"
+  >
+  </div>
+  <ul
+    role="list"
+    class="mt-4 flex justify-center gap-10 text-base/7 font-medium text-slate-700 sm:gap-8 lg:flex-col lg:gap-4"
+  >
+    {
+      (
+        [
+          ["GitHub", GithubSvg],
+          ["LinkedIn", LinkedInSvg],
+        ] as const
+      ).map(([label, Icon]) => (
+        <li class="flex">
+          <a href="/" class="group flex items-center" aria-label={label}>
+            <Icon class="size-6 fill-slate-400 group-hover:fill-slate-600" />
+            <span class="hidden sm:ml-3 sm:block">{label}</span>
+          </a>
+        </li>
+      ))
+    }
+  </ul>
+</section>

@@ -1,0 +1,18 @@
+---
+import AboutSection from "./AboutSection.astro";
+import TinyWaveFormIcon from "./TinyWaveFormIcon.astro";
+
+const date = new Date();
+const currentYear = date.getFullYear();
+---
+
+<footer
+  class="border-t border-slate-200 bg-slate-50 py-10 pb-40 sm:py-16 sm:pb-32 lg:hidden"
+>
+  <div class="mx-auto flex flex-col gap-y-8 px-4 sm:px-6 md:max-w-2xl md:px-4">
+    <AboutSection />
+    <div class="text-xs font-mono text-slate-400">
+      <span>&copy; {currentYear} Sukkyu Chung. All rights reserved.</span>
+    </div>
+  </div>
+</footer>

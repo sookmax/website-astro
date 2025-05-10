@@ -1,0 +1,96 @@
+---
+import type { CollectionEntry } from "astro:content";
+import Container from "./Container.astro";
+import FormattedDate from "./FormattedDate.astro";
+import Badge from "./Badge.astro";
+import ExternalLinkSVG from "@/images/external-link.svg";
+
+type Props = {
+  experience: CollectionEntry<"experience">;
+};
+
+const { experience } = Astro.props;
+const titleBadgeStyle =
+  experience.data.type === "Work"
+    ? 2
+    : experience.data.type === "Sabbatical"
+      ? 4
+      : experience.data.type === "Education" ||
+          experience.data.type === "Project"
+        ? 3
+        : 1;
+---
+
+<article
+  aria-labelledby={`experience-${experience.id}-title`}
+  class="py-10 sm:py-12"
+>
+  <Container>
+    <div class="flex flex-col items-start space-y-4">
+      <h2
+        id={`experience-${experience.id}-title`}
+        class="w-full text-lg font-bold text-slate-900 flex items-center justify-between"
+      >
+        <a
+          href={`/experience/${experience.id}`}
+          class="flex flex-col items-start sm:flex-row sm:items-center gap-1.5"
+        >
+          <Badge dot={false} style={titleBadgeStyle}
+            >{experience.data.type}</Badge
+          >
+          <span>{experience.data.title}</span>
+        </a>
+        {
+          experience.data.at && experience.data.atURL && (
+            <a
+              class="text-primary-base hover:text-primary-dark"
+              title={experience.data.at}
+              href={experience.data.atURL}
+              target="_blank"
+              rel="noopener noreferrer"
+            >
+              <ExternalLinkSVG class="size-4" />
+            </a>
+          )
+        }
+      </h2>
+      {
+        experience.data.tags && (
+          <div class="flex flex-wrap gap-1">
+            {experience.data.tags.map((tag) => (
+              <Badge>{tag}</Badge>
+            ))}
+          </div>
+        )
+      }
+      <div
+        class="order-first w-full flex justify-between font-mono text-sm/7 text-slate-500"
+      >
+        <div>
+          <FormattedDate date={experience.data.from} />
+          {
+            experience.data.to && (
+              <>
+                <span>-</span>
+                <FormattedDate date={experience.data.to} />
+              </>
+            )
+          }
+        </div>
+        <div>{experience.data.location}</div>
+      </div>
+      <p class="text-base/7 text-slate-700">
+        {experience.data.description}
+      </p>
+      <div class="flex items-center gap-4">
+        <a
+          href={`/experience/${experience.id}`}
+          class="flex items-center text-sm/6 font-bold text-primary-base hover:text-primary-dark"
+          aria-label={`Show notes for experience: ${experience.data.title}`}
+        >
+          Read more →
+        </a>
+      </div>
+    </div>
+  </Container>
+</article>

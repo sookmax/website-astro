@@ -1,0 +1,23 @@
+---
+const date = new Date();
+const currentYear = date.getFullYear();
+---
+
+<div
+  class:list={[
+    "hidden lg:h-full lg:sticky lg:top-0 lg:flex lg:items-center lg:justify-between lg:w-16 lg:flex-none lg:items-center lg:px-12 lg:text-sm/7 lg:whitespace-nowrap lg:[writing-mode:vertical-rl]",
+    "bg-gradient-to-b from-indigo-600 from-10% via-primary-base via-50% to-emerald-500 to-90%",
+  ]}
+>
+  <div class="flex items-center">
+    <span class="font-mono text-slate-200">Homepage of</span>
+    <span class="mt-6 flex gap-5 font-bold text-slate-50">
+      Sukkyu Chung
+      <span aria-hidden="true" class="text-slate-200">/</span>
+      Web Developer
+    </span>
+  </div>
+  <div class="text-xs font-mono text-slate-300 [writing-mode:sideways-rl]">
+    <span>&copy; {currentYear} Sukkyu Chung. All rights reserved.</span>
+  </div>
+</div>
