@@ -28,12 +28,21 @@ type Props = HTMLAttributes<"section">;
     {
       (
         [
-          ["GitHub", GithubSvg],
-          ["LinkedIn", LinkedInSvg],
+          ["GitHub", "https://github.com/sookmax", GithubSvg],
+          [
+            "LinkedIn",
+            "https://www.linkedin.com/in/sukkyu-sook-chung/",
+            LinkedInSvg,
+          ],
         ] as const
-      ).map(([label, Icon]) => (
+      ).map(([label, url, Icon]) => (
         <li class="flex">
-          <a href="/" class="group flex items-center" aria-label={label}>
+          <a
+            href={url}
+            target="_blank"
+            class="group flex items-center"
+            aria-label={label}
+          >
             <Icon class="size-6 fill-slate-400 group-hover:fill-slate-600" />
             <span class="hidden sm:ml-3 sm:block">{label}</span>
           </a>
