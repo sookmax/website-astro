@@ -1,0 +1,54 @@
+---
+import { getCollection } from "astro:content";
+import TagList from "./TagList.astro";
+import FunnelXSVG from "@/images/funnel-x.svg";
+
+type Props = {
+  activeTag?: string;
+};
+
+const { activeTag } = Astro.props;
+
+const xps = await getCollection("experience");
+
+const expTypeCounts = xps.reduce((map, exp) => {
+  map.set(exp.data.type, (map.get(exp.data.type) ?? 0) + 1);
+  return map;
+}, new Map<string, number>());
+---
+
+<TagList>
+  <h3
+    slot="tag-title"
+    class="text-xs font-mono text-slate-600 flex items-center gap-1.5"
+  >
+    <span>Experience Type</span>
+    <a
+      class:list={["text-rose-600", activeTag ? "visible" : "invisible"]}
+      href="/tags"
+    >
+      <FunnelXSVG class="size-3" />
+    </a>
+  </h3>
+  <ul slot="tag-list" class="flex flex-col items-start gap-2 ml-2">
+    {
+      [...expTypeCounts.entries()]
+        .sort(([, countA], [, countB]) => {
+          return countB - countA;
+        })
+        .map(([tag, count]) => (
+          <li class="text-slate-500 hover:text-slate-700 text-xs">
+            {tag.toLowerCase() === activeTag?.toLowerCase() ? (
+              <span class="text-primary-base font-medium flex items-center gap-1.5">
+                {tag} ({count})
+              </span>
+            ) : (
+              <a href={`/tags/${tag.toLowerCase()}`}>
+                {tag} ({count})
+              </a>
+            )}
+          </li>
+        ))
+    }
+  </ul>
+</TagList>

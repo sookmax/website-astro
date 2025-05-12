@@ -39,7 +39,7 @@ const breadcrumbs = Astro.url.pathname
       breadcrumbs.map(({ label, path }, index) => (
         <div class="flex">
           {index > 0 && (
-            <BreadcrumbDividerSVG class="h-10 mb-3 text-slate-400" />
+            <BreadcrumbDividerSVG class="h-10 mb-3 text-slate-300" />
           )}
           <a
             href={path}

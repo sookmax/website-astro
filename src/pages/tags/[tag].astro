@@ -1,0 +1,32 @@
+---
+import ExperienceList from "@/components/ExperienceList.astro";
+import type { GetStaticPaths } from "astro";
+import type { CollectionEntry } from "astro:content";
+import { getCollection } from "astro:content";
+
+export const getStaticPaths = (async () => {
+  const exps = await getCollection("experience");
+  const uniqueExpTypes = new Set(exps.map((exp) => exp.data.type));
+
+  return [...uniqueExpTypes].map((expType) => ({
+    params: {
+      tag: expType.toLowerCase(),
+    },
+    props: {
+      tagDisplayName: expType,
+      expFilter: (exp: CollectionEntry<"experience">) => {
+        return exp.data.type.toLowerCase() === expType.toLowerCase();
+      },
+    },
+  }));
+}) satisfies GetStaticPaths;
+
+const { tag } = Astro.params;
+const { tagDisplayName, expFilter } = Astro.props;
+---
+
+<ExperienceList
+  tagDisplayName={tagDisplayName}
+  expFilter={expFilter}
+  activeTag={tag}
+/>

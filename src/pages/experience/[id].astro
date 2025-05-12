@@ -5,12 +5,12 @@ import { render } from "astro:content";
 import { getCollection } from "astro:content";
 
 export const getStaticPaths = (async () => {
-  const experiences = await getCollection("experience");
-  return experiences.map((experience) => ({
+  const exps = await getCollection("experience");
+  return exps.map((exp) => ({
     params: {
-      id: experience.id,
+      id: exp.id,
     },
-    props: { experience },
+    props: { experience: exp },
   }));
 }) satisfies GetStaticPaths;
 
