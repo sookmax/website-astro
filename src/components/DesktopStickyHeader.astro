@@ -21,7 +21,7 @@ const breadcrumbs = Astro.url.pathname
     },
     [
       {
-        label: "Home",
+        label: "sook.dev",
         path: "/",
       },
     ]
@@ -45,7 +45,7 @@ const breadcrumbs = Astro.url.pathname
             href={path}
             class="font-mono text-slate-200 flex items-center gap-1.5"
           >
-            {label === "Home" && <HouseSVG class="rotate-90 size-3" />}
+            {path === "/" && <HouseSVG class="rotate-90 size-3" />}
             {label}
           </a>
         </div>
