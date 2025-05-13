@@ -6,8 +6,6 @@ import Experience from "@/components/Experience.astro";
 import ExpTypeTagList from "@/components/ExpTypeTagList.astro";
 import type { CollectionEntry } from "astro:content";
 import type { ComponentProps } from "astro/types";
-import Badge from "./Badge.astro";
-import XSVG from "@/images/x.svg";
 
 type Props = {
   tagDisplayName?: string;
@@ -24,33 +22,23 @@ const exps = (await getCollection("experience"))
 ---
 
 <RootLayout>
-  <div class="pt-16 pb-12 sm:pb-4 lg:flex lg:pt-12">
+  <div class="relative pt-16 pb-12 sm:pb-4 lg:flex lg:pt-12">
     <div class="lg:grow lg:max-w-4xl">
       <Container>
         <div class="flex items-center gap-x-2">
           <h1 class="text-2xl/7 font-bold text-slate-900">Experience</h1>
-          {
-            tagDisplayName && (
-              <a href="/">
-                <Badge dot={false} style={5}>
-                  <span>{tagDisplayName}</span>
-                  <XSVG class="size-3" />
-                </Badge>
-              </a>
-            )
-          }
         </div>
+      </Container>
+      <Container
+        class="sticky top-0 mt-6 py-3 bg-primary-2x-light/50 lg:bg-white/20 backdrop-blur-sm"
+      >
+        <ExpTypeTagList {...expTypeTagListProps} />
       </Container>
       <div
         class="divide-y divide-slate-100 sm:mt-4 lg:mt-8 lg:border-t lg:border-slate-100"
       >
         {exps.map((exp) => <Experience experience={exp} />)}
       </div>
-    </div>
-    <div
-      class="hidden lg:shrink-0 lg:block lg:sticky lg:top-0 lg:h-fit lg:pt-14 lg:pr-5 lg:ml-2"
-    >
-      <ExpTypeTagList {...expTypeTagListProps} />
     </div>
   </div>
 </RootLayout>

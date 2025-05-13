@@ -6,6 +6,7 @@
   --font-sans:
     Satoshi, ui-sans-serif, system-ui, sans-serif, "Apple Color Emoji",
     "Segoe UI Emoji", "Segoe UI Symbol", "Noto Color Emoji";
+  --color-primary-2x-light: var(--color-sky-100);
   --color-primary-extralight: var(--color-sky-200);
   --color-primary-light: var(--color-sky-400);
   --color-primary-base: var(--color-sky-600);

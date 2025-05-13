@@ -1,26 +1,30 @@
 ---
+import CircleSVG from "@/images/circle.svg";
+
 type Props = {
   dot?: boolean;
   style?: 1 | 2 | 3 | 4 | 5;
+  class?: string;
 };
 
-const { dot = true, style = 1 } = Astro.props;
+const { dot = true, style = 1, class: className } = Astro.props;
 ---
 
 <span
   class:list={[
     "inline-flex items-center gap-x-1.5 rounded-md px-1.5 py-0.5 text-xs font-medium",
     style === 1 &&
-      "text-slate-500 bg-primary-extralight/20 ring-1 ring-inset ring-slate-100",
+      "text-slate-400 bg-primary-extralight/20 ring-1 ring-inset ring-slate-100",
     style === 2 && "text-slate-200 bg-primary-base",
     style === 3 && "text-slate-200 bg-indigo-600",
     style === 4 && "text-slate-200 bg-emerald-500",
     style === 5 && "text-slate-600 ring-1 ring-inset ring-slate-300",
+    className,
   ]}
 >
   {
     dot && (
-      <svg
+      <CircleSVG
         class:list={[
           "size-1.5",
           style === 1 && "fill-primary-extralight",
@@ -28,11 +32,7 @@ const { dot = true, style = 1 } = Astro.props;
           style === 3 && "fill-indigo-200",
           style === 4 && "fill-emerald-200",
         ]}
-        viewBox="0 0 6 6"
-        aria-hidden="true"
-      >
-        <circle cx="3" cy="3" r="3" />
-      </svg>
+      />
     )
   }
   <slot />

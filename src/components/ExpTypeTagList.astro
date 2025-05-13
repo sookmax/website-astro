@@ -1,6 +1,8 @@
 ---
 import { getCollection } from "astro:content";
-import TagList from "./TagList.astro";
+import TagsSVG from "@/images/tags.svg";
+import CircleSVG from "@/images/circle.svg";
+import Badge from "./Badge.astro";
 import FunnelXSVG from "@/images/funnel-x.svg";
 
 type Props = {
@@ -17,38 +19,42 @@ const expTypeCounts = exps.reduce((map, exp) => {
 }, new Map<string, number>());
 ---
 
-<TagList>
-  <h3
-    slot="tag-title"
-    class="text-xs font-mono text-slate-600 flex items-center gap-1.5"
-  >
-    <span>Type</span>
-    <a
-      class:list={["text-rose-600", activeTag ? "visible" : "invisible"]}
-      href="/"
-    >
-      <FunnelXSVG class="size-3" />
-    </a>
-  </h3>
-  <ul slot="tag-list" class="flex flex-col items-start gap-2 ml-2">
+<div class="flex items-center gap-x-2.5">
+  <TagsSVG class="size-5 text-primary-base" />
+  <ul class="flex items-center gap-1.5">
     {
       [...expTypeCounts.entries()]
         .sort(([, countA], [, countB]) => {
           return countB - countA;
         })
-        .map(([tag, count]) => (
-          <li class="text-slate-500 hover:text-slate-700 text-xs">
-            {tag.toLowerCase() === activeTag?.toLowerCase() ? (
-              <span class="text-primary-base font-medium flex items-center gap-1.5">
-                {tag} ({count})
-              </span>
-            ) : (
+        .map(([tag, count]) => {
+          const badgeStyle =
+            tag === "Work"
+              ? 2
+              : tag === "Sabbatical"
+                ? 4
+                : tag === "Education" || tag === "Project"
+                  ? 3
+                  : 1;
+
+          return (
+            <li class="text-slate-500 hover:text-slate-700 text-sm">
               <a href={`/tags/${tag.toLowerCase()}`}>
-                {tag} ({count})
+                <Badge class="relative" style={badgeStyle} dot={false}>
+                  <span>
+                    {tag} ({count})
+                  </span>
+                  {tag.toLowerCase() === activeTag?.toLowerCase() && (
+                    <CircleSVG class="absolute top-[-2px] right-[-2px] size-1.5 fill-rose-600" />
+                  )}
+                </Badge>
               </a>
-            )}
-          </li>
-        ))
+            </li>
+          );
+        })
     }
   </ul>
-</TagList>
+  <a class:list={["text-slate-500", !activeTag && "hidden"]} href="/">
+    <FunnelXSVG class="size-4" />
+  </a>
+</div>
