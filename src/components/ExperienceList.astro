@@ -24,7 +24,7 @@ const exps = (await getCollection("experience"))
 ---
 
 <RootLayout>
-  <div class="pt-16 pb-12 sm:pb-4 lg:pt-12 lg:flex lg:gap-x-8">
+  <div class="pt-16 pb-12 sm:pb-4 lg:flex lg:pt-12">
     <div class="lg:grow lg:max-w-4xl">
       <Container>
         <div class="flex items-center gap-x-2">
@@ -47,7 +47,9 @@ const exps = (await getCollection("experience"))
         {exps.map((exp) => <Experience experience={exp} />)}
       </div>
     </div>
-    <div class="hidden lg:block lg:mt-16 lg:shrink-0 lg:px-5">
+    <div
+      class="hidden lg:shrink-0 lg:block lg:sticky lg:top-0 lg:h-fit lg:pt-14 lg:pr-5 lg:ml-2"
+    >
       <ExpTypeTagList {...expTypeTagListProps} />
     </div>
   </div>
