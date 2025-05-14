@@ -4,6 +4,7 @@ import TagsSVG from "@/images/tags.svg";
 import CircleSVG from "@/images/circle.svg";
 import Badge from "./Badge.astro";
 import FunnelXSVG from "@/images/funnel-x.svg";
+import { MAIN_ID } from "./Main.astro";
 
 type Props = {
   activeTag?: string;
@@ -39,7 +40,7 @@ const expTypeCounts = exps.reduce((map, exp) => {
 
           return (
             <li class="text-slate-500 hover:text-slate-700 text-sm">
-              <a href={`/tags/${tag.toLowerCase()}`}>
+              <a href={`/tags/${tag.toLowerCase()}#${MAIN_ID}`}>
                 <Badge class="relative" style={badgeStyle} dot={false}>
                   <span>
                     {tag} ({count})
@@ -54,7 +55,10 @@ const expTypeCounts = exps.reduce((map, exp) => {
         })
     }
   </ul>
-  <a class:list={["text-slate-500", !activeTag && "hidden"]} href="/">
+  <a
+    class:list={["text-slate-500", !activeTag && "hidden"]}
+    href={`/#${MAIN_ID}`}
+  >
     <FunnelXSVG class="size-4" />
   </a>
 </div>

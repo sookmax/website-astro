@@ -7,6 +7,8 @@ import ExpTypeTagList from "@/components/ExpTypeTagList.astro";
 import type { CollectionEntry } from "astro:content";
 import type { ComponentProps } from "astro/types";
 
+const EXPERIENCE_HEADER_ID = "experience";
+
 type Props = {
   tagDisplayName?: string;
   expFilter?: (exp: CollectionEntry<"experience">) => boolean;
@@ -26,7 +28,12 @@ const exps = (await getCollection("experience"))
     <div class="lg:grow lg:max-w-4xl">
       <Container>
         <div class="flex items-center gap-x-2">
-          <h1 class="text-2xl/7 font-bold text-slate-900">Experience</h1>
+          <h1
+            id={EXPERIENCE_HEADER_ID}
+            class="text-2xl/7 font-bold text-slate-900"
+          >
+            Experience
+          </h1>
         </div>
       </Container>
       <Container
