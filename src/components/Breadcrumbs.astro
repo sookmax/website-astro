@@ -1,6 +1,7 @@
 ---
 import HouseSVG from "@/images/house.svg";
 import BreadcrumbDividerSVG from "@/images/breadcrumb-divider.svg";
+import { cn } from "@/utils";
 
 const date = new Date();
 const currentYear = date.getFullYear();
@@ -32,10 +33,10 @@ const breadcrumbs = Astro.originPathname
 ---
 
 <div
-  class:list={[
-    "hidden lg:h-full lg:sticky lg:top-0 lg:flex lg:items-center lg:justify-between lg:items-center lg:px-12 lg:text-sm/7 lg:whitespace-nowrap lg:[writing-mode:vertical-rl]",
+  class={cn([
+    "hidden lg:h-full lg:sticky lg:top-0 lg:flex lg:items-center lg:justify-between lg:px-12 lg:text-sm/7 lg:whitespace-nowrap lg:[writing-mode:vertical-rl]",
     "bg-gradient-to-b from-indigo-600 from-10% via-primary-base via-50% to-emerald-500 to-90%",
-  ]}
+  ])}
 >
   <div class="flex items-center">
     {

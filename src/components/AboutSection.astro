@@ -16,19 +16,14 @@ type Props = HTMLAttributes<"section">;
       />
       <span class="ml-2.5">About</span>
     </h2>
-    <p
-      class="mt-2 text-base/7 text-slate-700 lg:line-clamp-4 flex flex-col gap-3"
-    >
-      <span
-        >I wandered in from the world of data, stuck around for the code, and
-        stayed for the joy of bringing ideas to life on the web. I enjoy
-        crafting user interfaces, and turning concepts into something people can
-        actually use.</span
-      >
-      <span
-        >Still learning. Still growing. Still trying to be a slightly better web
-        dev than I was yesterday… or whatever.</span
-      >
+    <p class="mt-2 text-base/7 text-slate-700 lg:line-clamp-3">
+      I wandered in from the world of data, stuck around for the code, and
+      stayed for the joy of bringing ideas to life on the web. I enjoy crafting
+      user interfaces, and turning concepts into something people can actually
+      use.
+      <br />
+      <br />
+      Forever getting stuck and also forever breaking things.
     </p>
     <button
       type="button"
@@ -48,7 +43,7 @@ type Props = HTMLAttributes<"section">;
       showMoreButton?.addEventListener("click", () => {
         const p = this.querySelector("p");
         if (p) {
-          p.classList.remove("lg:line-clamp-4");
+          p.classList.remove("lg:line-clamp-3");
           showMoreButton.remove();
         }
       });

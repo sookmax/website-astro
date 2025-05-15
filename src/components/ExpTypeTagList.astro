@@ -5,6 +5,7 @@ import CircleSVG from "@/images/circle.svg";
 import Badge from "./Badge.astro";
 import FunnelXSVG from "@/images/funnel-x.svg";
 import { MAIN_ID } from "./Main.astro";
+import { cn } from "@/utils";
 
 type Props = {
   activeTag?: string;
@@ -56,7 +57,7 @@ const expTypeCounts = exps.reduce((map, exp) => {
     }
   </ul>
   <a
-    class:list={["text-slate-500", !activeTag && "hidden"]}
+    class={cn(["text-slate-500", !activeTag && "hidden"])}
     href={`/#${MAIN_ID}`}
   >
     <FunnelXSVG class="size-4" />
