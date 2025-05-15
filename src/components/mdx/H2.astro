@@ -1,0 +1,13 @@
+---
+import { cn } from "@/utils";
+---
+
+<h2
+  class={cn([
+    "mt-12 flex items-center font-mono text-sm/7 font-medium text-slate-900",
+    "before:mr-3 before:h-3 before:w-1.5 before:rounded-r-full",
+    "before:bg-indigo-500 [&:nth-of-type(3n)]:before:bg-emerald-400 [&:nth-of-type(3n+2)]:before:bg-primary-light",
+  ])}
+>
+  <slot />
+</h2>

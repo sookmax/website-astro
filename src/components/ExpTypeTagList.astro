@@ -6,6 +6,7 @@ import Badge from "./Badge.astro";
 import FunnelXSVG from "@/images/funnel-x.svg";
 import { MAIN_ID } from "./Main.astro";
 import { cn } from "@/utils";
+import { GET_BADGE_STYLE } from "@/consts";
 
 type Props = {
   activeTag?: string;
@@ -30,19 +31,14 @@ const expTypeCounts = exps.reduce((map, exp) => {
           return countB - countA;
         })
         .map(([tag, count]) => {
-          const badgeStyle =
-            tag === "Work"
-              ? 2
-              : tag === "Sabbatical"
-                ? 4
-                : tag === "Education" || tag === "Project"
-                  ? 3
-                  : 1;
-
           return (
             <li class="text-slate-500 hover:text-slate-700 text-sm">
               <a href={`/tags/${tag.toLowerCase()}#${MAIN_ID}`}>
-                <Badge class="relative" style={badgeStyle} dot={false}>
+                <Badge
+                  class="relative"
+                  style={GET_BADGE_STYLE(tag)}
+                  dot={false}
+                >
                   <span>
                     {tag} ({count})
                   </span>

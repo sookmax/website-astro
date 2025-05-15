@@ -1,0 +1,33 @@
+---
+import type { HTMLAttributes } from "astro/types";
+import FormattedDate from "./FormattedDate.astro";
+import { cn } from "@/utils";
+
+type Props = {
+  from: Date;
+  to?: Date;
+  location?: string;
+} & HTMLAttributes<"div">;
+const { from, to, location, class: className, ...props } = Astro.props;
+---
+
+<div
+  class={cn(
+    "w-full flex justify-between lg:font-mono text-sm/7 text-slate-500",
+    className
+  )}
+  {...props}
+>
+  <div>
+    <FormattedDate date={from} />
+    {
+      to && (
+        <>
+          <span>-</span>
+          <FormattedDate date={to} />
+        </>
+      )
+    }
+  </div>
+  {location && <div>{location}</div>}
+</div>
