@@ -1,0 +1,13 @@
+{
+  "name": "@website/shared",
+  "version": "1.0.0",
+  "description": "shared assests like image, svg, and css",
+  "packageManager": "pnpm@10.9.0",
+  "exports": {
+    "./css/*.css": "./css/*.css"
+  },
+  "dependencies": {
+    "@tailwindcss/typography": "^0.5.16",
+    "tailwindcss": "^4.1.7"
+  }
+}
