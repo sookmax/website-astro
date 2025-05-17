@@ -1,0 +1,14 @@
+---
+import { getImage } from "astro:assets";
+import { ImageGallery as ImageGalleryReact } from "@website/react";
+type Props = {
+  imageUrls: string[];
+};
+
+const { imageUrls } = Astro.props;
+const images = await Promise.all(
+  imageUrls.map((url) => getImage({ src: url, inferSize: true }))
+);
+---
+
+<ImageGalleryReact images={images} />

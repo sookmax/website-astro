@@ -9,7 +9,22 @@ import react from "@astrojs/react";
 // https://astro.build/config
 export default defineConfig({
   site: "https://example.com",
-  integrations: [mdx(), sitemap(), react()],
+  integrations: [
+    mdx(),
+    sitemap(),
+    react({
+      experimentalReactChildren: true,
+    }),
+  ],
+  image: {
+    domains: ["sook.dev"],
+    remotePatterns: [
+      {
+        protocol: "https",
+        hostname: "assets.sook.dev",
+      },
+    ],
+  },
   vite: {
     plugins: [tailwindcss()],
   },
