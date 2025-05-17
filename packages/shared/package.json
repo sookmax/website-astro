@@ -4,10 +4,13 @@
   "description": "shared assests like image, svg, and css",
   "packageManager": "pnpm@10.9.0",
   "exports": {
-    "./css/*.css": "./css/*.css"
+    "./css/*.css": "./css/*.css",
+    "./utils": "./utils/index.ts"
   },
   "dependencies": {
     "@tailwindcss/typography": "^0.5.16",
+    "clsx": "^2.1.1",
+    "tailwind-merge": "^3.3.0",
     "tailwindcss": "^4.1.7"
   }
 }
