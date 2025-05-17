@@ -3,5 +3,9 @@
   "version": "1.0.0",
   "description": "astro & react based monorepo for my website",
   "author": "sukkyu.chung@gmail.com",
-  "packageManager": "pnpm@10.9.0"
+  "packageManager": "pnpm@10.9.0",
+  "devDependencies": {
+    "prettier": "3.5.3",
+    "prettier-plugin-astro": "0.14.1"
+  }
 }
