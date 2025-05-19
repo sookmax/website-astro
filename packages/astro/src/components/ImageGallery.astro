@@ -1,14 +1,20 @@
 ---
 import { getImage } from "astro:assets";
 import { ImageGallery as ImageGalleryReact } from "@website/react";
+
 type Props = {
-  imageUrls: string[];
+  urls: string[];
 };
 
-const { imageUrls } = Astro.props;
+const { urls } = Astro.props;
 const images = await Promise.all(
-  imageUrls.map((url) => getImage({ src: url, inferSize: true }))
+  urls.map((url) =>
+    getImage({ src: url, inferSize: true }).then((result) => ({
+      src: result.src,
+      ...result.attributes,
+    }))
+  )
 );
 ---
 
-<ImageGalleryReact images={images} />
+<ImageGalleryReact client:visible images={images} />
