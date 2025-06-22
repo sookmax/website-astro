@@ -6,8 +6,7 @@ import Experience from "@/components/Experience.astro";
 import ExpTypeTagList from "@/components/ExpTypeTagList.astro";
 import type { CollectionEntry } from "astro:content";
 import type { ComponentProps } from "astro/types";
-
-const EXPERIENCE_HEADER_ID = "experience";
+import MainBreadcrumbs from "./MainBreadcrumbs.astro";
 
 type Props = {
   tagDisplayName?: string;
@@ -24,24 +23,25 @@ const exps = (await getCollection("experience"))
 ---
 
 <RootLayout>
-  <div class="relative pt-16 pb-12 sm:pb-4 lg:pt-12">
-    <Container>
-      <div class="flex items-center gap-x-2">
-        <h1
-          id={EXPERIENCE_HEADER_ID}
-          class="text-2xl/7 font-bold text-slate-900"
-        >
-          Experience
-        </h1>
-      </div>
+  <div class="z-10 sticky top-0 w-full bg-white xl:hidden">
+    <Container class="mx-auto px-1">
+      <MainBreadcrumbs />
     </Container>
-    <Container class="sticky top-0 mt-6 py-3 backdrop-blur-sm">
+  </div>
+  <div class="sticky top-11 xl:top-0 bg-white border-b border-gray-200">
+    <Container class="w-full mx-auto px-2.5 py-2.5 xl:ml-8">
       <ExpTypeTagList {...expTypeTagListProps} />
     </Container>
-    <div
-      class="divide-y divide-slate-100 sm:mt-4 lg:mt-8 lg:border-t lg:border-slate-100"
-    >
-      {exps.map((exp) => <Experience experience={exp} />)}
-    </div>
+  </div>
+  <div
+    class="flex flex-col items-center xl:items-start xl:ml-8 divide-y divide-gray-200"
+  >
+    {
+      exps.map((exp) => (
+        <Container>
+          <Experience experience={exp} />
+        </Container>
+      ))
+    }
   </div>
 </RootLayout>

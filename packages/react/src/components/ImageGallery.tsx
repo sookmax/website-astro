@@ -1,13 +1,7 @@
 import { ChevronLeft, ChevronRight, Maximize, XIcon } from "lucide-react";
 import { Button } from "./Button";
 import { cn } from "@website/shared/utils";
-import React, {
-  useCallback,
-  useEffect,
-  useLayoutEffect,
-  useRef,
-  useState,
-} from "react";
+import React, { useCallback, useLayoutEffect, useRef, useState } from "react";
 import { Spinner } from "./Spinner";
 import { Dialog, DialogClose, DialogContent, DialogTitle } from "./Dialog";
 import { VisuallyHidden } from "@radix-ui/react-visually-hidden";
@@ -17,28 +11,27 @@ export function ImageGallery({
 }: Pick<React.ComponentPropsWithoutRef<typeof ImageGalleryInline>, "images">) {
   const [activeIndex, setActiveIndex] = useState(0);
   const [isFullscreen, setIsFullscreen] = useState(false);
+  const [thumbnailsElRef, scrollToActiveThumbnail] = useTrackThumbnailScroll();
 
   const prevImage = useCallback(() => {
-    setActiveIndex((prevIndex) => {
-      if (prevIndex === 0) {
-        return images.length - 1;
-      }
-      return prevIndex - 1;
-    });
-  }, [images.length]);
+    const nextIndex = activeIndex === 0 ? images.length - 1 : activeIndex - 1;
+    setActiveIndex(nextIndex);
+    scrollToActiveThumbnail(nextIndex);
+  }, [images.length, activeIndex, scrollToActiveThumbnail]);
 
   const nextImage = useCallback(() => {
-    setActiveIndex((prevIndex) => {
-      if (prevIndex === images.length - 1) {
-        return 0;
-      }
-      return prevIndex + 1;
-    });
-  }, [images.length]);
+    const nextIndex = activeIndex === images.length - 1 ? 0 : activeIndex + 1;
+    setActiveIndex(nextIndex);
+    scrollToActiveThumbnail(nextIndex);
+  }, [images.length, activeIndex, scrollToActiveThumbnail]);
 
-  const onThumbnailClick = useCallback((index: number) => {
-    setActiveIndex(index);
-  }, []);
+  const onThumbnailClick = useCallback(
+    (index: number) => {
+      setActiveIndex(index);
+      scrollToActiveThumbnail(index);
+    },
+    [scrollToActiveThumbnail],
+  );
 
   const onFullScreenClick = useCallback(() => {
     setIsFullscreen((value) => !value);
@@ -53,6 +46,7 @@ export function ImageGallery({
         nextImage={nextImage}
         onThumbnailClick={onThumbnailClick}
         onFullScreenClick={onFullScreenClick}
+        thumbnailsElRef={thumbnailsElRef}
       />
       <Dialog open={isFullscreen} onOpenChange={setIsFullscreen}>
         <DialogContent className="max-w-none p-0 border-0" closeButton={false}>
@@ -65,6 +59,7 @@ export function ImageGallery({
             prevImage={prevImage}
             nextImage={nextImage}
             onThumbnailClick={onThumbnailClick}
+            thumbnailsElRef={thumbnailsElRef}
           />
         </DialogContent>
       </Dialog>
@@ -79,6 +74,7 @@ type ImageGalleryInlineProps = {
   prevImage: () => void;
   onThumbnailClick: (index: number) => void;
   onFullScreenClick: () => void;
+  thumbnailsElRef: React.RefObject<HTMLDivElement | null>;
 };
 function ImageGalleryInline({
   images,
@@ -87,13 +83,12 @@ function ImageGalleryInline({
   prevImage,
   onThumbnailClick,
   onFullScreenClick,
+  thumbnailsElRef,
 }: ImageGalleryInlineProps) {
   const activeImage = images[activeIndex];
 
-  const thumbnailsElRef = useTrackThumbnailScroll(activeIndex);
-
   return (
-    <div className="not-prose flex flex-col items-center bg-black rounded-md shadow-md shadow-slate-200 border border-input overflow-hidden">
+    <div className="not-prose grid bg-black rounded-md shadow-md shadow-slate-200 border border-input overflow-hidden">
       <div className="relative w-full flex items-center justify-center">
         <div className="absolute inset-0 flex items-center justify-center">
           <Spinner color="var(--color-gray-100)" />
@@ -176,10 +171,9 @@ function ImageGalleryFullscreen({
   nextImage,
   prevImage,
   onThumbnailClick,
+  thumbnailsElRef,
 }: ImageGalleryFullscreenProps) {
   const activeImage = images[activeIndex];
-
-  const thumbnailsElRef = useTrackThumbnailScroll(activeIndex);
 
   const [mainContainerMaxHeight, setMainContainerMaxHeight] = useState<
     string | undefined
@@ -277,12 +271,11 @@ function ImageGalleryFullscreen({
   );
 }
 
-function useTrackThumbnailScroll(activeIndex: number) {
+function useTrackThumbnailScroll() {
   const thumbnailsElRef = useRef<HTMLDivElement>(null);
 
-  useEffect(() => {
-    const activeThumbnailImage =
-      thumbnailsElRef.current?.children.item(activeIndex);
+  const scrollToActiveThumbnail = useCallback((index: number) => {
+    const activeThumbnailImage = thumbnailsElRef.current?.children.item(index);
 
     if (activeThumbnailImage) {
       activeThumbnailImage.scrollIntoView({
@@ -290,7 +283,7 @@ function useTrackThumbnailScroll(activeIndex: number) {
         block: "nearest",
       });
     }
-  }, [activeIndex]);
+  }, []);
 
-  return thumbnailsElRef;
+  return [thumbnailsElRef, scrollToActiveThumbnail] as const;
 }

@@ -1,0 +1,90 @@
+---
+import ChevronRightSVG from "@website/shared/svg/chevron-right.svg";
+import TableOfContentsList from "./TableOfContentsList.astro";
+import type { HTMLAttributes } from "astro/types";
+import type { TOC } from "@/utils/toc";
+import { cn } from "@website/shared/utils";
+import TinyWaveFormIcon from "./TinyWaveFormIcon.astro";
+
+type Props = HTMLAttributes<"nav"> & {
+  toc: TOC;
+};
+
+const { toc, class: className, ...props } = Astro.props as Props;
+---
+
+<mobile-starlight-toc
+  data-min-h={toc.options.minHeadingLevel}
+  data-max-h={toc.options.maxHeadingLevel}
+>
+  <div class="flex items-center space-x-2">
+    <TinyWaveFormIcon colors={["fill-emerald-500"]} class="h-2.5 w-2.5" />
+    <nav
+      aria-labelledby="starlight__on-this-page--mobile"
+      class={cn(className, "w-full bg-white select-none")}
+      {...props}
+    >
+      <details id="starlight__mobile-toc">
+        <summary
+          id="starlight__on-this-page--mobile"
+          class="cursor-pointer py-3 flex items-center list-none [&::-webkit-details-marker]:hidden text-sm font-medium text-gray-500"
+        >
+          <div class="flex items-center space-x-2">
+            <span>On this page</span>
+            <ChevronRightSVG
+              class="text-gray-400 size-3 [details[open]_&]:rotate-90"
+            />
+            <span class="display-current"></span>
+          </div>
+        </summary>
+        <div class="absolute top-full left-0 w-full bg-white shadow-lg">
+          <div>
+            <TableOfContentsList isMobile toc={toc.items} />
+          </div>
+        </div>
+      </details>
+    </nav>
+  </div>
+</mobile-starlight-toc>
+
+<script>
+  import { StarlightTOC } from "./starlight-toc";
+
+  class MobileStarlightTOC extends StarlightTOC {
+    override set current(link: HTMLAnchorElement) {
+      super.current = link;
+      const display = this.querySelector(".display-current") as HTMLSpanElement;
+      if (display) display.textContent = link.textContent;
+    }
+
+    constructor() {
+      super();
+      const details = this.querySelector("details");
+      if (!details) return;
+      const closeToC = () => {
+        details.open = false;
+      };
+      // Close the table of contents whenever a link is clicked.
+      details.querySelectorAll("a").forEach((a) => {
+        a.addEventListener("click", closeToC);
+      });
+      // Close the table of contents when a user clicks outside of it.
+      window.addEventListener("click", (e) => {
+        if (!details.contains(e.target as Node)) closeToC();
+      });
+      // Or when they press the escape key.
+      window.addEventListener("keydown", (e) => {
+        if (e.key === "Escape" && details.open) {
+          const hasFocus = details.contains(document.activeElement);
+          closeToC();
+          if (hasFocus) {
+            const summary = details.querySelector("summary");
+            if (summary) summary.focus();
+          }
+        }
+      });
+    }
+  }
+
+  customElements.define("mobile-starlight-toc", MobileStarlightTOC);
+</script>

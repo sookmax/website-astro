@@ -1,6 +1,5 @@
 ---
 import type { CollectionEntry } from "astro:content";
-import Container from "./Container.astro";
 import Badge from "./Badge.astro";
 import ExternalLinkSVG from "@/images/external-link.svg";
 import { GET_BADGE_STYLE } from "@/consts";
@@ -17,61 +16,59 @@ const { experience } = Astro.props;
   aria-labelledby={`experience-${experience.id}-title`}
   class="py-10 sm:py-12"
 >
-  <Container>
-    <div class="flex flex-col items-start space-y-4">
-      <DateAndLocation
-        from={experience.data.from}
-        to={experience.data.to}
-        location={experience.data.location}
-      />
-      <h2
-        id={`experience-${experience.id}-title`}
-        class="w-full text-lg font-bold text-slate-900 flex items-center justify-between"
+  <div class="flex flex-col space-y-4">
+    <DateAndLocation
+      from={experience.data.from}
+      to={experience.data.to}
+      location={experience.data.location}
+    />
+    <h2
+      id={`experience-${experience.id}-title`}
+      class="w-full text-lg font-bold text-slate-900 flex items-center justify-between"
+    >
+      <a
+        href={`/experience/${experience.id}`}
+        class="flex flex-col items-start sm:flex-row sm:items-center gap-1.5"
       >
-        <a
-          href={`/experience/${experience.id}`}
-          class="flex flex-col items-start sm:flex-row sm:items-center gap-1.5"
-        >
-          <Badge dot={false} style={GET_BADGE_STYLE(experience.data.type)}>
-            {experience.data.type}
-          </Badge>
-          <span>{experience.data.title}</span>
-        </a>
-        {
-          experience.data.at && experience.data.atURL && (
-            <a
-              class="text-primary-base hover:text-primary-dark"
-              title={experience.data.at}
-              href={experience.data.atURL}
-              target="_blank"
-              rel="noopener noreferrer"
-            >
-              <ExternalLinkSVG class="size-4" />
-            </a>
-          )
-        }
-      </h2>
+        <Badge dot={false} style={GET_BADGE_STYLE(experience.data.type)}>
+          {experience.data.type}
+        </Badge>
+        <span>{experience.data.title}</span>
+      </a>
       {
-        experience.data.tags && (
-          <div class="flex flex-wrap gap-1">
-            {experience.data.tags.map((tag) => (
-              <Badge>{tag}</Badge>
-            ))}
-          </div>
+        experience.data.at && experience.data.atURL && (
+          <a
+            class="text-primary-base hover:text-primary-dark"
+            title={experience.data.at}
+            href={experience.data.atURL}
+            target="_blank"
+            rel="noopener noreferrer"
+          >
+            <ExternalLinkSVG class="size-4" />
+          </a>
         )
       }
-      <p class="text-base/7 text-slate-700">
-        {experience.data.description}
-      </p>
-      <div class="flex items-center gap-4">
-        <a
-          href={`/experience/${experience.id}`}
-          class="flex items-center text-sm/6 font-bold text-primary-base hover:text-primary-dark"
-          aria-label={`Show notes for experience: ${experience.data.title}`}
-        >
-          Read more →
-        </a>
-      </div>
+    </h2>
+    {
+      experience.data.tags && (
+        <div class="flex flex-wrap gap-1">
+          {experience.data.tags.map((tag) => (
+            <Badge>{tag}</Badge>
+          ))}
+        </div>
+      )
+    }
+    <p class="text-base/7 text-slate-700">
+      {experience.data.description}
+    </p>
+    <div class="flex items-center gap-4">
+      <a
+        href={`/experience/${experience.id}/#`}
+        class="flex items-center text-sm/6 font-bold text-primary-base hover:text-primary-dark"
+        aria-label={`Show notes for experience: ${experience.data.title}`}
+      >
+        Read more →
+      </a>
     </div>
-  </Container>
+  </div>
 </article>

@@ -10,8 +10,13 @@ import MobileFooter from "@/components/MobileFooter.astro";
 <html lang="en" class="h-full bg-white antialiased">
   <BaseHead title={SITE_TITLE} description={SITE_DESCRIPTION} />
   <body class="min-h-full">
-    <Header />
-    <Main><slot /></Main>
+    <Header
+      class="hidden xl:flex xl:fixed xl:inset-y-0 xl:left-0 xl:w-[360px] 2xl:w-[400px]"
+    />
+    <Main
+      class="xl:relative xl:mb-28 xl:ml-[360px] xl:border-t-0 2xl:ml-[400px] 2xl:max-w-7xl"
+      ><slot /></Main
+    >
     <MobileFooter />
   </body>
 </html>

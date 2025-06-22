@@ -1,11 +1,21 @@
 ---
 import { Image } from "astro:assets";
 import avatar2dImage from "@/images/avatar_2d.png";
+import { cn } from "@website/shared/utils";
+
+type Props = {
+  class?: string;
+};
+
+const { class: className } = Astro.props;
 ---
 
 <a
   href="/"
-  class="relative mx-auto block w-48 overflow-hidden rounded-lg bg-slate-100 shadow-xl shadow-slate-200 sm:w-64 sm:rounded-xl lg:w-auto lg:rounded-2xl"
+  class={cn(
+    "relative mx-auto block w-48 overflow-hidden rounded-lg bg-slate-100 shadow-xl shadow-slate-200 xl:w-auto xl:rounded-2xl",
+    className
+  )}
   aria-label="Homepage"
 >
   <Image class="w-full" src={avatar2dImage} alt="main avatar picture" />

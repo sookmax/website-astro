@@ -1,0 +1,28 @@
+---
+// https://github.com/withastro/starlight/blob/main/packages/starlight/components/TableOfContents.astro
+import { cn } from "@website/shared/utils";
+import TableOfContentsList from "./TableOfContentsList.astro";
+import type { HTMLAttributes } from "astro/types";
+import type { TOC } from "@/utils/toc";
+
+type Props = HTMLAttributes<"nav"> & {
+  toc: TOC;
+};
+
+const { toc, class: className, ...props } = Astro.props;
+---
+
+<starlight-toc
+  class="block text-sm"
+  data-min-h={toc.options.minHeadingLevel}
+  data-max-h={toc.options.maxHeadingLevel}
+>
+  <nav class={cn(className)} {...props}>
+    <h2 class="font-medium flex space-x-1">
+      <span>On this page</span>
+    </h2>
+    <TableOfContentsList toc={toc.items} />
+  </nav>
+</starlight-toc>
+
+<script src="./starlight-toc"></script>

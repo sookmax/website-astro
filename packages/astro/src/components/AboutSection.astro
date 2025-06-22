@@ -5,7 +5,7 @@ import TinyWaveFormIcon from "./TinyWaveFormIcon.astro";
 type Props = HTMLAttributes<"section">;
 ---
 
-<about-section>
+<about-section class="block">
   <section {...Astro.props}>
     <h2
       class="flex items-center font-mono text-sm/7 font-medium text-slate-900"
@@ -16,7 +16,7 @@ type Props = HTMLAttributes<"section">;
       />
       <span class="ml-2.5">About</span>
     </h2>
-    <p class="mt-2 text-base/7 text-slate-700 lg:line-clamp-3">
+    <p class="mt-2 text-base/7 text-slate-700 line-clamp-3">
       I wandered in from the world of data, stuck around for the code, and
       stayed for the joy of bringing ideas to life on the web. I enjoy crafting
       user interfaces, and turning concepts into something people can actually
@@ -27,7 +27,7 @@ type Props = HTMLAttributes<"section">;
     </p>
     <button
       type="button"
-      class="cursor-pointer mt-2 hidden text-sm/6 font-bold text-primary-base hover:text-primary-dark lg:inline-block"
+      class="cursor-pointer mt-2 text-sm/6 font-bold text-primary-base hover:text-primary-dark"
     >
       Show more
     </button>
@@ -43,7 +43,7 @@ type Props = HTMLAttributes<"section">;
       showMoreButton?.addEventListener("click", () => {
         const p = this.querySelector("p");
         if (p) {
-          p.classList.remove("lg:line-clamp-3");
+          p.classList.remove("line-clamp-3");
           showMoreButton.remove();
         }
       });

@@ -2,26 +2,24 @@
 import { cn } from "@website/shared/utils";
 import type { HTMLAttributes } from "astro/types";
 
-type Props = HTMLAttributes<"h2">;
-
+type Props = HTMLAttributes<"h3">;
 const { class: className, id, ...rest } = Astro.props as Props;
 ---
 
-<h2
+<h3
   id={id}
   class={cn([
-    "scroll-m-28 xl:scroll-m-16",
     "flex items-center text-slate-900",
-    "before:mr-2 before:h-4 before:w-2 before:rounded-r-full",
-    "before:bg-primary-base",
+    "before:mr-2 before:h-3 before:w-1.5 before:rounded-r-full",
+    "before:bg-primary-light",
     className,
   ])}
   {...rest}
 >
   <a
     href={`#${id}`}
-    class="not-prose hover:underline hover:after:content-['#'] hover:after:text-xl"
+    class="not-prose hover:underline hover:after:content-['#'] hover:after:text-lg"
   >
     <slot />
   </a>
-</h2>
+</h3>

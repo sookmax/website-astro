@@ -17,3 +17,6 @@ export function GET_BADGE_STYLE(type: string) {
       return 1;
   }
 }
+
+// https://github.com/withastro/starlight/blob/main/packages/starlight/constants.ts
+export const PAGE_TITLE_ID = "_top";

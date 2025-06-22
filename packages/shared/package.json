@@ -5,6 +5,7 @@
   "packageManager": "pnpm@10.9.0",
   "exports": {
     "./css/*.css": "./css/*.css",
+    "./svg/*.svg": "./svg/*.svg",
     "./utils": "./utils/index.ts"
   },
   "dependencies": {

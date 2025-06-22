@@ -1,6 +1,5 @@
 ---
 import { getCollection } from "astro:content";
-import TagsSVG from "@/images/tags.svg";
 import CircleSVG from "@/images/circle.svg";
 import Badge from "./Badge.astro";
 import FunnelXSVG from "@/images/funnel-x.svg";
@@ -23,7 +22,6 @@ const expTypeCounts = exps.reduce((map, exp) => {
 ---
 
 <div class="flex items-center gap-x-2.5">
-  <TagsSVG class="size-5 text-primary-base" />
   <ul class="flex items-center gap-1.5">
     {
       [...expTypeCounts.entries()]
