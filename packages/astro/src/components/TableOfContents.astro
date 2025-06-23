@@ -21,7 +21,9 @@ const { toc, class: className, ...props } = Astro.props;
     <h2 class="font-medium flex space-x-1">
       <span>On this page</span>
     </h2>
-    <TableOfContentsList toc={toc.items} />
+    <div class="ml-2">
+      <TableOfContentsList toc={toc.items} />
+    </div>
   </nav>
 </starlight-toc>
 

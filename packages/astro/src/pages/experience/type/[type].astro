@@ -1,0 +1,45 @@
+---
+import ExperienceList from "@/components/ExperienceList.astro";
+import ExperienceTypeList from "@/components/ExperienceTypeList.astro";
+import ExperienceListLayout from "@/layouts/ExperienceListLayout.astro";
+import {
+  getExperienceTypeCounts,
+  sortExperiencesByDate,
+} from "@/utils/experience";
+import type { GetStaticPaths } from "astro";
+import { getCollection } from "astro:content";
+
+export const getStaticPaths = (async () => {
+  const experiences = sortExperiencesByDate(await getCollection("experience"));
+  const uniqueTypes = new Set(
+    experiences.map((experience) => experience.data.type)
+  );
+
+  return [...uniqueTypes].map((type) => ({
+    params: {
+      type: type.toLowerCase(),
+    },
+    props: {
+      experiences,
+    },
+  }));
+}) satisfies GetStaticPaths;
+
+const { type } = Astro.params;
+const { experiences } = Astro.props;
+
+const experiencesFiltered = experiences.filter(
+  (item) => item.data.type.toLowerCase() === type
+);
+
+const typeCounts = getExperienceTypeCounts(experiences);
+---
+
+<ExperienceListLayout>
+  <ExperienceTypeList
+    slot="experience-type-list"
+    activeType={type}
+    typeCounts={typeCounts}
+  />
+  <ExperienceList slot="experience-list" items={experiencesFiltered} />
+</ExperienceListLayout>

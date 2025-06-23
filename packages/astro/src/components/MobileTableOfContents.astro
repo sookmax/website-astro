@@ -37,10 +37,10 @@ const { toc, class: className, ...props } = Astro.props as Props;
             <span class="display-current"></span>
           </div>
         </summary>
-        <div class="absolute top-full left-0 w-full bg-white shadow-lg">
-          <div>
-            <TableOfContentsList isMobile toc={toc.items} />
-          </div>
+        <div
+          class="absolute w-full left-0 bg-white shadow-lg px-4 sm:px-8 pb-2 [&_li:not(:last-of-type)]:border-b [&_li:not(:last-of-type)]:border-gray-100"
+        >
+          <TableOfContentsList isMobile toc={toc.items} />
         </div>
       </details>
     </nav>

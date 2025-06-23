@@ -1,7 +1,8 @@
 ---
-import BreadCrumbDivider from "./BreadCrumbDivider.astro";
 import { cn } from "@website/shared/utils";
+import BreadCrumbDivider from "./BreadCrumbDivider.astro";
 import TinyWaveFormIcon from "./TinyWaveFormIcon.astro";
+import { getBreadcrumbs } from "@/utils/breadcrumbs";
 
 type Props = {
   class?: string;
@@ -9,31 +10,13 @@ type Props = {
 
 const { class: className } = Astro.props as Props;
 
-const { id } = Astro.params;
-
-const breadcrumbs = [
-  {
-    label: "home",
-    path: "/",
-  },
-  {
-    label: "experience",
-    path: "/experience",
-  },
-];
-
-if (id) {
-  breadcrumbs.push({
-    label: id,
-    path: `/experience/${id}`,
-  });
-}
+const breadcrumbs = getBreadcrumbs(Astro.url.pathname);
 ---
 
 <div class={cn("flex items-center space-x-2", className)}>
   <TinyWaveFormIcon colors={["fill-primary-base"]} class="h-2.5 w-2.5" />
   <nav id="main-breadcrumbs" aria-label="Breadcrumb">
-    <ol role="list" class="flex w-full space-x-1 md:space-x-4 py-3">
+    <ol role="list" class="flex w-full space-x-1 md:space-x-4 py-2.5">
       {
         breadcrumbs.map(({ label, path }, index) => (
           <li class="flex">

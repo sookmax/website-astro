@@ -1,0 +1,51 @@
+---
+import CircleSVG from "@/images/circle.svg";
+import Badge from "./Badge.astro";
+import FunnelXSVG from "@/images/funnel-x.svg";
+import { cn } from "@website/shared/utils";
+import { GET_BADGE_STYLE } from "@/consts";
+
+type Props = {
+  activeType?: string;
+  typeCounts: Map<string, number>;
+};
+
+const { activeType, typeCounts } = Astro.props;
+---
+
+<div class="px-2.5 py-2 flex items-center gap-x-2.5">
+  <ul class="flex items-center gap-1.5">
+    {
+      [...typeCounts.entries()]
+        .sort(([, countA], [, countB]) => {
+          return countB - countA;
+        })
+        .map(([type, count]) => {
+          return (
+            <li class="text-slate-500 hover:text-slate-700 text-sm">
+              <a href={`/experience/type/${type.toLowerCase()}`}>
+                <Badge
+                  class="relative"
+                  style={GET_BADGE_STYLE(type)}
+                  dot={false}
+                >
+                  <span>
+                    {type} ({count})
+                  </span>
+                  {type.toLowerCase() === activeType?.toLowerCase() && (
+                    <CircleSVG class="absolute top-[-1px] right-[-1px] size-1.5 fill-rose-600" />
+                  )}
+                </Badge>
+              </a>
+            </li>
+          );
+        })
+    }
+  </ul>
+  <a
+    class={cn(["text-slate-500", !activeType && "hidden"])}
+    href={`/experience`}
+  >
+    <FunnelXSVG class="size-4" />
+  </a>
+</div>

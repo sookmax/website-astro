@@ -1,5 +1,18 @@
 ---
 import ExperienceList from "@/components/ExperienceList.astro";
+import { getCollection } from "astro:content";
+import ExperienceTypeList from "@/components/ExperienceTypeList.astro";
+import ExperienceListLayout from "@/layouts/ExperienceListLayout.astro";
+import {
+  getExperienceTypeCounts,
+  sortExperiencesByDate,
+} from "@/utils/experience";
+
+const experiences = sortExperiencesByDate(await getCollection("experience"));
+const typeCounts = getExperienceTypeCounts(experiences);
 ---
 
-<ExperienceList />
+<ExperienceListLayout>
+  <ExperienceTypeList slot="experience-type-list" typeCounts={typeCounts} />
+  <ExperienceList slot="experience-list" items={experiences} />
+</ExperienceListLayout>

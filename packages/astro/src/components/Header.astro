@@ -2,6 +2,7 @@
 import HeaderBreadcrumbs from "@/components/HeaderBreadcrumbs.astro";
 import { cn } from "@website/shared/utils";
 import IntroSection from "./IntroSection.astro";
+import WaveForm from "./WaveForm.astro";
 
 type Props = {
   class?: string;
@@ -12,9 +13,12 @@ const { class: className } = Astro.props;
 
 <header class={cn("bg-gray-50 flex items-start overflow-y-auto", className)}>
   <HeaderBreadcrumbs
-    class="font-mono h-full sticky top-0 flex items-center justify-between px-4 py-1 text-sm/7 whitespace-nowrap [writing-mode:vertical-rl]"
+    class="font-mono h-full sticky top-0 flex items-center justify-between px-5 py-1 text-sm/7 whitespace-nowrap [writing-mode:vertical-rl]"
   />
-  <IntroSection
-    class="min-h-full border-r border-gray-200 px-4 py-5 2xl:px-5 2xl:py-7 space-y-10"
-  />
+  <div class="relative">
+    <WaveForm class="absolute top-0 left-0 h-20 w-full" />
+    <IntroSection
+      class="min-h-full border-r border-gray-200 px-4 py-5 2xl:px-5 2xl:py-7 space-y-10"
+    />
+  </div>
 </header>

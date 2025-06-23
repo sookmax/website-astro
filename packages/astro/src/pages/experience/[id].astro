@@ -14,16 +14,16 @@ import { getCollection } from "astro:content";
 import { generateToc } from "@/utils/toc";
 import TableOfContents from "@/components/TableOfContents.astro";
 import { PAGE_TITLE_ID } from "@/consts";
-import MainBreadcrumbs from "@/components/MainBreadcrumbs.astro";
 import MobileTableOfContents from "@/components/MobileTableOfContents.astro";
+import MobileHeader from "@/components/MobileHeader.astro";
 
 export const getStaticPaths = (async () => {
-  const exps = await getCollection("experience");
-  return exps.map((exp) => ({
+  const experiences = await getCollection("experience");
+  return experiences.map((experience) => ({
     params: {
-      id: exp.id,
+      id: experience.id,
     },
-    props: { experience: exp },
+    props: { experience },
   }));
 }) satisfies GetStaticPaths;
 
@@ -40,15 +40,17 @@ const toc = generateToc([
 <RootLayout>
   <div class="xl:flex xl:divide-x xl:divide-slate-200">
     <div class="flex flex-col items-center">
-      <Container class="z-10 sticky top-0 w-full px-1 bg-white xl:hidden">
-        <MainBreadcrumbs />
+      <Container class="z-10 sticky top-0 w-full px-0 bg-white xl:hidden">
+        <MobileHeader />
       </Container>
-      <div class="z-10 sticky top-11 w-full bg-white border-b xl:hidden">
-        <Container class="mx-auto px-1">
+      <div class="z-10 sticky top-10 w-full bg-white border-b xl:hidden">
+        <Container class="relative mx-auto px-1">
           <MobileTableOfContents toc={toc} />
         </Container>
       </div>
-      <Container class="py-7 sm:py-9 xl:px-10 xl:py-7 2xl:px-24 2xl:py-10">
+      <Container
+        class="md:max-w-full py-7 sm:py-9 xl:px-10 xl:py-7 2xl:px-24 2xl:py-10"
+      >
         <article
           class={cn(
             "prose prose-gray maxw",
@@ -69,7 +71,7 @@ const toc = generateToc([
             </div>
             <h1
               id={PAGE_TITLE_ID}
-              class="not-prose text-2xl lg:text-4xl font-bold text-slate-900 scroll-m-36 xl:scroll-m-30"
+              class="not-prose text-2xl lg:text-4xl font-bold text-slate-900 scroll-m-52 xl:scroll-m-30"
             >
               {experience.data.title}
             </h1>

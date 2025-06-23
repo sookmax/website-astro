@@ -1,7 +1,7 @@
 ---
 import type { TocItem } from "@/utils/toc";
 import { cn } from "@website/shared/utils";
-import CheckSVG from "@website/shared/svg/check.svg";
+import CircleSVG from "@/images/circle.svg";
 
 interface Props {
   toc: TocItem[];
@@ -13,45 +13,44 @@ const { toc, isMobile = false, depth = 0 } = Astro.props;
 ---
 
 <ul
-  class={cn("text-gray-700", isMobile && "w-full")}
+  class={cn("text-gray-700", depth > 0 && "pl-4", isMobile && "w-full")}
   style={{ "--depth": depth }}
 >
   {
     toc.map((heading) => (
-      <li>
-        <a
-          class={cn(
-            "flex pl-[calc(1rem_*_var(--depth)_+_0.5rem)] py-1 hover:text-emerald-500",
-            isMobile && "px-3 py-0 text-sm text-gray-500",
-            "aria-[current=true]:font-medium aria-[current=true]:text-indigo-700"
-          )}
-          href={`#${heading.slug}`}
-        >
-          <span
+      <>
+        <li>
+          <a
             class={cn(
-              isMobile &&
-                "p-2 border-t w-full flex items-center justify-between"
+              "flex py-1 hover:text-emerald-500",
+              isMobile && "py-2 text-sm text-gray-500",
+              "aria-[current=true]:font-medium aria-[current=true]:text-emerald-600"
             )}
+            href={`#${heading.slug}`}
           >
-            <span>{heading.text}</span>
             <span
               class={cn(
-                !isMobile && "hidden",
-                "[a:not([aria-current='true'])_&]:hidden"
+                "w-full flex items-center",
+                isMobile ? "justify-between" : "space-x-3"
               )}
             >
-              <CheckSVG class="size-4" />
+              <span>{heading.text}</span>
+              <span class={cn("hidden [a[aria-current='true']_&]:block")}>
+                <CircleSVG class="size-1.5 fill-emerald-500" />
+              </span>
             </span>
-          </span>
-        </a>
+          </a>
+        </li>
         {heading.children.length > 0 && (
-          <Astro.self
-            toc={heading.children}
-            depth={depth + 1}
-            isMobile={isMobile}
-          />
+          <li>
+            <Astro.self
+              toc={heading.children}
+              depth={depth + 1}
+              isMobile={isMobile}
+            />
+          </li>
         )}
-      </li>
+      </>
     ))
   }
 </ul>

@@ -1,6 +1,5 @@
 ---
 import { cn } from "@website/shared/utils";
-export const MAIN_ID = "main";
 
 type Props = {
   class?: string;
@@ -9,6 +8,6 @@ type Props = {
 const { class: className } = Astro.props;
 ---
 
-<main id={MAIN_ID} class={cn("border-t border-gray-200", className)}>
+<main class={cn("border-t border-gray-200", className)}>
   <slot />
 </main>

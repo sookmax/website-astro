@@ -1,61 +1,39 @@
 ---
 import { cn } from "@website/shared/utils";
 import BreadCrumbDivider from "./BreadCrumbDivider.astro";
+import { getBreadcrumbs } from "@/utils/breadcrumbs";
 
 type Props = {
   class?: string;
 };
 const { class: className } = Astro.props as Props;
 
-const { id } = Astro.params;
-
-const breadcrumbs = [
-  {
-    label: "home",
-    path: "/",
-  },
-  {
-    label: "experience",
-    path: "/experience",
-  },
-];
-
-if (id) {
-  breadcrumbs.push({
-    label: id,
-    path: `/experience/${id}`,
-  });
-}
-
+const breadcrumbs = getBreadcrumbs(Astro.url.pathname);
 const date = new Date();
 const currentYear = date.getFullYear();
 ---
 
-<div
+<nav
   class={cn([
     "bg-gradient-to-b from-indigo-600 from-10% via-primary-base via-50% to-emerald-500 to-90%",
     className,
   ])}
 >
-  <div class="flex items-center space-x-4">
-    {
-      breadcrumbs.length > 1 &&
-        breadcrumbs.map(({ label, path }, index) => (
-          <div class="flex items-center">
-            {index > 0 && (
-              <BreadCrumbDivider class="-rotate-90 text-gray-300/50" />
-            )}
-            <a
-              href={path}
-              class="mt-4 text-slate-200 flex items-center gap-1.5"
-            >
+  <div class="flex items-center">
+    <ol role="list" class="flex items-center space-x-2">
+      {
+        breadcrumbs.map(({ label, path }) => (
+          <li class="flex items-center space-x-2">
+            <BreadCrumbDivider class="-rotate-90 text-gray-200/50" />
+            <a href={path} class="text-slate-200 flex items-center gap-1.5">
               {label}
             </a>
-          </div>
+          </li>
         ))
-    }
+      }
+    </ol>
   </div>
   <div class="text-slate-200 [writing-mode:sideways-rl]">
     <span>&copy; {currentYear} Sukkyu Chung</span>
   </div>
-</div>
+</nav>

@@ -1,0 +1,19 @@
+---
+import Container from "@/components/Container.astro";
+import RootLayout from "./RootLayout.astro";
+import MobileHeader from "@/components/MobileHeader.astro";
+---
+
+<RootLayout>
+  <div class="z-10 sticky top-0 w-full bg-white xl:hidden">
+    <Container class="mx-auto px-0">
+      <MobileHeader />
+    </Container>
+  </div>
+  <div class="sticky top-10 xl:top-0 bg-white border-b border-gray-200">
+    <Container class="w-full mx-auto px-0 xl:ml-8">
+      <slot name="experience-type-list" />
+    </Container>
+  </div>
+  <slot name="experience-list" />
+</RootLayout>

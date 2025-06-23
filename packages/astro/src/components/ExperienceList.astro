@@ -1,47 +1,23 @@
 ---
-import { getCollection } from "astro:content";
-import RootLayout from "@/layouts/RootLayout.astro";
 import Container from "@/components/Container.astro";
 import Experience from "@/components/Experience.astro";
-import ExpTypeTagList from "@/components/ExpTypeTagList.astro";
 import type { CollectionEntry } from "astro:content";
-import type { ComponentProps } from "astro/types";
-import MainBreadcrumbs from "./MainBreadcrumbs.astro";
 
 type Props = {
-  tagDisplayName?: string;
-  expFilter?: (exp: CollectionEntry<"experience">) => boolean;
-} & ComponentProps<typeof ExpTypeTagList>;
+  items: CollectionEntry<"experience">[];
+};
 
-const { tagDisplayName, expFilter, ...expTypeTagListProps } = Astro.props;
-
-const exps = (await getCollection("experience"))
-  .filter((exp) => {
-    return expFilter ? expFilter(exp) : true;
-  })
-  .sort((a, b) => b.data.from.valueOf() - a.data.from.valueOf());
+const { items } = Astro.props;
 ---
 
-<RootLayout>
-  <div class="z-10 sticky top-0 w-full bg-white xl:hidden">
-    <Container class="mx-auto px-1">
-      <MainBreadcrumbs />
-    </Container>
-  </div>
-  <div class="sticky top-11 xl:top-0 bg-white border-b border-gray-200">
-    <Container class="w-full mx-auto px-2.5 py-2.5 xl:ml-8">
-      <ExpTypeTagList {...expTypeTagListProps} />
-    </Container>
-  </div>
-  <div
-    class="flex flex-col items-center xl:items-start xl:ml-8 divide-y divide-gray-200"
-  >
-    {
-      exps.map((exp) => (
-        <Container>
-          <Experience experience={exp} />
-        </Container>
-      ))
-    }
-  </div>
-</RootLayout>
+<div
+  class="flex flex-col items-center xl:items-start xl:ml-8 divide-y divide-gray-200"
+>
+  {
+    items.map((item) => (
+      <Container>
+        <Experience experience={item} />
+      </Container>
+    ))
+  }
+</div>
