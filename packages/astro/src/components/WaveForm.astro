@@ -3,6 +3,8 @@ import type { HTMLAttributes } from "astro/types";
 
 type Props = HTMLAttributes<"svg">;
 
+const { id, class: className, ...rest } = Astro.props;
+
 function randomBetween(min: number, max: number, seed = 1) {
   return () => {
     let rand = Math.sin(seed++) * 10000;
@@ -23,11 +25,9 @@ const barHeights = Array.from(
   { length: bars.total },
   randomBetween(bars.minHeight, bars.maxHeight)
 );
-
-const id = "wave-form";
 ---
 
-<svg aria-hidden="true" {...Astro.props}>
+<svg aria-hidden="true" id={id} class={className} {...rest}>
   <defs>
     <linearGradient id={`${id}-fade`} x1="0" x2="0" y1="0" y2="1">
       <stop offset="40%" stop-color="white"></stop>

@@ -15,10 +15,13 @@ const { class: className } = Astro.props;
   <HeaderBreadcrumbs
     class="font-mono h-full sticky top-0 flex items-center justify-between px-5 py-1 text-sm/7 whitespace-nowrap [writing-mode:vertical-rl]"
   />
-  <div class="relative">
-    <WaveForm class="absolute top-0 left-0 h-20 w-full" />
+  <div class="relative h-full">
+    <WaveForm
+      id="desktop-header-waveform"
+      class="absolute top-0 left-0 h-20 w-full"
+    />
     <IntroSection
-      class="min-h-full border-r border-gray-200 px-4 py-5 2xl:px-5 2xl:py-7 space-y-10"
+      class="min-h-full border-r border-gray-200 px-4 py-7 2xl:px-5 2xl:py-9 space-y-10"
     />
   </div>
 </header>

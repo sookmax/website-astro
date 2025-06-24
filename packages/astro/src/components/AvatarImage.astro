@@ -10,17 +10,36 @@ type Props = {
 const { class: className } = Astro.props;
 ---
 
-<a
-  href="/"
-  class={cn(
-    "relative mx-auto block w-48 overflow-hidden rounded-lg bg-slate-100 shadow-xl shadow-slate-200 xl:w-auto xl:rounded-2xl",
-    className
-  )}
-  aria-label="Homepage"
->
-  <Image class="w-full" src={avatar2dImage} alt="main avatar picture" />
-  <div
-    class="absolute inset-0 rounded-lg ring-1 ring-black/10 ring-inset sm:rounded-xl lg:rounded-2xl"
+<avatar-image class="block">
+  <a
+    href="/"
+    class={cn(
+      "relative mx-auto block w-48 overflow-hidden rounded-lg bg-slate-100 shadow-xl shadow-slate-200 xl:w-auto xl:rounded-2xl",
+      className
+    )}
+    aria-label="Homepage"
   >
-  </div>
-</a>
+    <Image class="w-full" src={avatar2dImage} alt="main avatar picture" />
+    <div
+      class="absolute inset-0 rounded-lg ring-1 ring-black/10 ring-inset sm:rounded-xl lg:rounded-2xl"
+    >
+    </div>
+  </a>
+</avatar-image>
+
+<script>
+  class AvatarImage extends HTMLElement {
+    connectedCallback() {
+      const link = this.querySelector("a");
+      if (link) {
+        link.addEventListener("click", (event) => {
+          const mobileHeaderDialog = this.closest("[role='dialog']");
+          if (mobileHeaderDialog) {
+            event.preventDefault();
+          }
+        });
+      }
+    }
+  }
+  customElements.define("avatar-image", AvatarImage);
+</script>

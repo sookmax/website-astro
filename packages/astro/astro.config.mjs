@@ -13,7 +13,7 @@ export default defineConfig({
     mdx(),
     sitemap(),
     react({
-      experimentalReactChildren: true,
+      // experimentalReactChildren: true,
     }),
   ],
   image: {

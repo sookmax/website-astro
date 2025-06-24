@@ -4,7 +4,6 @@ import BaseHead from "@/components/BaseHead.astro";
 import { SITE_TITLE, SITE_DESCRIPTION } from "@/consts";
 import Header from "@/components/Header.astro";
 import Main from "@/components/Main.astro";
-import MobileFooter from "@/components/MobileFooter.astro";
 ---
 
 <html lang="en" class="h-full bg-white antialiased">
@@ -14,9 +13,8 @@ import MobileFooter from "@/components/MobileFooter.astro";
       class="hidden xl:flex xl:fixed xl:inset-y-0 xl:left-0 xl:w-[360px] 2xl:w-[400px]"
     />
     <Main
-      class="xl:relative xl:mb-28 xl:ml-[360px] xl:border-t-0 2xl:ml-[400px]"
+      class="pb-24 xl:pb-12 xl:relative xl:ml-[360px] xl:border-t-0 2xl:ml-[400px]"
       ><slot /></Main
     >
-    <MobileFooter />
   </body>
 </html>
