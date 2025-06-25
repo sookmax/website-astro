@@ -1,4 +1,4 @@
-import { MenuIcon, XIcon } from "lucide-react";
+import { XIcon } from "lucide-react";
 import {
   Dialog,
   DialogClose,
@@ -8,11 +8,16 @@ import {
 } from "./Dialog";
 import { VisuallyHidden } from "@radix-ui/react-visually-hidden";
 
-export function MobileMenuDialog({ children }: { children: React.ReactNode }) {
+export function MobileMenuDialog({
+  triggerIcon,
+  content,
+}: {
+  [key: string]: string | string[] | boolean;
+}) {
   return (
     <Dialog>
-      <DialogTrigger className="pr-1.5 focus:outline-none">
-        <MenuIcon className="size-5 text-gray-500" />
+      <DialogTrigger className="focus:outline-none">
+        {triggerIcon}
       </DialogTrigger>
       <DialogContent
         className="border-0 p-0 w-full max-w-xl overflow-auto"
@@ -26,7 +31,7 @@ export function MobileMenuDialog({ children }: { children: React.ReactNode }) {
           <XIcon className="size-6 text-gray-500/50" />
           <span className="sr-only">Close</span>
         </DialogClose>
-        <div className="max-h-[88vh] overflow-auto">{children}</div>
+        <div className="max-h-[88vh] overflow-auto">{content}</div>
       </DialogContent>
     </Dialog>
   );

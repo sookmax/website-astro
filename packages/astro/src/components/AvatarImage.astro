@@ -32,12 +32,13 @@ const { class: className } = Astro.props;
     connectedCallback() {
       const link = this.querySelector("a");
       if (link) {
-        link.addEventListener("click", (event) => {
-          const mobileHeaderDialog = this.closest("[role='dialog']");
-          if (mobileHeaderDialog) {
+        const mobileHeaderDialog = this.closest("[role='dialog']");
+        if (mobileHeaderDialog) {
+          link.classList.add("cursor-default");
+          link.addEventListener("click", (event) => {
             event.preventDefault();
-          }
-        });
+          });
+        }
       }
     }
   }

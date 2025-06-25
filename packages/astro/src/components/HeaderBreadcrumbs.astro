@@ -22,9 +22,11 @@ const currentYear = date.getFullYear();
   <div class="flex items-center">
     <ol role="list" class="flex items-center space-x-2">
       {
-        breadcrumbs.map(({ label, path }) => (
+        breadcrumbs.map(({ label, path }, index) => (
           <li class="flex items-center space-x-2">
-            <BreadCrumbDivider class="-rotate-90 text-gray-200/50" />
+            {index > 0 && (
+              <BreadCrumbDivider class="-rotate-90 text-gray-200/50" />
+            )}
             <a href={path} class="text-slate-200 flex items-center gap-1.5">
               {label}
             </a>

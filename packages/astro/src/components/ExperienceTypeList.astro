@@ -4,6 +4,7 @@ import Badge from "./Badge.astro";
 import FunnelXSVG from "@/images/funnel-x.svg";
 import { cn } from "@website/shared/utils";
 import { GET_BADGE_STYLE } from "@/consts";
+import TinyWaveFormIcon from "./TinyWaveFormIcon.astro";
 
 type Props = {
   activeType?: string;
@@ -13,7 +14,11 @@ type Props = {
 const { activeType, typeCounts } = Astro.props;
 ---
 
-<div class="px-2.5 py-2 flex items-center gap-x-2.5">
+<div class="px-2.5 py-2.5 flex items-center gap-x-2.5">
+  <TinyWaveFormIcon
+    colors={["fill-slate-300", "fill-indigo-600"]}
+    class="h-2.5 w-2.5"
+  />
   <ul class="flex items-center gap-1.5">
     {
       [...typeCounts.entries()]
@@ -22,8 +27,8 @@ const { activeType, typeCounts } = Astro.props;
         })
         .map(([type, count]) => {
           return (
-            <li class="text-slate-500 hover:text-slate-700 text-sm">
-              <a href={`/experience/type/${type.toLowerCase()}`}>
+            <li class="text-sm">
+              <a class="flex" href={`/experience/type/${type.toLowerCase()}`}>
                 <Badge
                   class="relative"
                   style={GET_BADGE_STYLE(type)}

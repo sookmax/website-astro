@@ -18,16 +18,19 @@ const { toc, class: className, ...props } = Astro.props as Props;
   data-max-h={toc.options.maxHeadingLevel}
 >
   <div class="flex items-center space-x-2">
-    <TinyWaveFormIcon colors={["fill-emerald-500"]} class="h-2.5 w-2.5" />
+    <TinyWaveFormIcon
+      colors={["fill-slate-300", "fill-emerald-500"]}
+      class="h-2.5 w-2.5"
+    />
     <nav
       aria-labelledby="starlight__on-this-page--mobile"
-      class={cn(className, "w-full bg-white select-none")}
+      class={cn(className, "w-full select-none")}
       {...props}
     >
       <details id="starlight__mobile-toc">
         <summary
           id="starlight__on-this-page--mobile"
-          class="cursor-pointer py-3 flex items-center list-none [&::-webkit-details-marker]:hidden text-sm font-medium text-gray-500"
+          class="cursor-pointer py-2.5 flex items-center list-none [&::-webkit-details-marker]:hidden text-sm font-medium text-gray-500"
         >
           <div class="flex items-center space-x-2">
             <span>On this page</span>

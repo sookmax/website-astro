@@ -2,11 +2,21 @@
 import { MobileMenuDialog } from "@website/react";
 import MainBreadcrumbs from "./MainBreadcrumbs.astro";
 import MobileHeaderContent from "./MobileHeaderContent.astro";
+import avatar2dImage from "@/images/avatar_2d.png";
+import { Image } from "astro:assets";
 ---
 
-<div class="flex items-center justify-between px-1">
+<div class="flex items-center justify-between px-2.5">
   <MainBreadcrumbs />
   <MobileMenuDialog client:idle>
-    <MobileHeaderContent />
+    <Image
+      slot="trigger-icon"
+      class="inline-block size-7 rounded-full bg-slate-50"
+      src={avatar2dImage}
+      alt="avatar picture"
+      width={200}
+      height={200}
+    />
+    <MobileHeaderContent slot="content" />
   </MobileMenuDialog>
 </div>
