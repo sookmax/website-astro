@@ -12,12 +12,15 @@ const { class: className } = Astro.props;
 ---
 
 <div class={cn("space-y-5", className)}>
-  <AvatarImage />
-  <div class="text-center xl:text-left">
-    <p class="flex flex-col">
-      <span class="text-xl font-bold text-gray-900">Hi, I'm Sook.</span>
-      <span class="text-lg/8 font-medium text-gray-700">A web developer.</span>
-    </p>
+  <div class="space-y-5">
+    <AvatarImage />
+    <div class="text-center">
+      <p class="flex flex-col">
+        <span class="text-xl font-bold text-gray-900">Hi, I'm Sook.</span>
+        <span class="text-lg/8 font-medium text-gray-700">A web developer.</span
+        >
+      </p>
+    </div>
   </div>
   <AboutSection />
   <ConnectSection />
