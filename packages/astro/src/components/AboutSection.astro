@@ -1,6 +1,7 @@
 ---
 import type { HTMLAttributes } from "astro/types";
 import TinyWaveFormIcon from "./TinyWaveFormIcon.astro";
+import A from "./mdx/A.astro";
 
 type Props = HTMLAttributes<"section">;
 ---
@@ -16,19 +17,46 @@ type Props = HTMLAttributes<"section">;
       />
       <span class="ml-2.5">About</span>
     </h2>
-    <p class="mt-2 text-base/7 text-slate-700 line-clamp-3">
-      I wandered in from the world of data, stuck around for the code, and
-      stayed for the joy of bringing ideas to life on the web. I enjoy crafting
-      user interfaces, and turning concepts into something people can actually
-      use.
-      <br />
-      <br />
-      Forever getting stuck and also forever breaking things.
-      <br />
-      I wandered in from the world of data, stuck around for the code, and stayed
-      for the joy of bringing ideas to life on the web. I enjoy crafting user interfaces,
-      and turning concepts into something people can actually use.
-    </p>
+    <div
+      class="about-text mt-2 text-base/7 text-slate-700 line-clamp-3 space-y-2"
+    >
+      <p>
+        I wandered in from the world of data, stumbled around, and stayed for
+        the joy of crafting user interfaces for the web.
+      </p>
+      <p>
+        I began my career as a data analyst after finishing college in 2015, and
+        did that for about four years before I jumped into web development. In
+        hindsight, it was always the visual side of data&mdash;the charts, the
+        tables, the interfaces&mdash;that truly pulled me in.
+      </p>
+      <p>
+        An insatiable curiosity about how the tools I used daily&mdash;things
+        like <A href="https://posit.co/products/open-source/rstudio-server/"
+          >RStudio Server</A
+        > and <A href="https://jupyter.org/">Jupyter Notebook</A>, which feel
+        almost indistinguisable from desktop apps in terms of
+        interactivity&mdash;actually worked is probably what led me here as
+        well.
+      </p>
+      <p>
+        While web technology has become astonishingly capable, building for the
+        web is still a tricky craft. Different devices, different browsers, and
+        even different environments like WebViews or in-app browsers&mdash;it's
+        no wonder how easy it is to introduce regressions or break a layout with
+        a single change. These challenges grow exponentially when you're not
+        building alone.
+      </p>
+      <p>
+        Still, I believe great products are built by great teams&mdash;and great
+        teams are built on trust, clarity, and mutual respect. That's the kind
+        of team I want to be a part of. And the best way I know to earn that
+        place is to become a more competent, thoughtful engineer myself.
+      </p>
+      <p>
+        So here I am, trying to be a better web dev than yesterday, every day.
+      </p>
+    </div>
     <button
       type="button"
       class="cursor-pointer mt-2 text-sm/6 font-bold text-primary-base hover:text-primary-dark"
@@ -45,9 +73,9 @@ type Props = HTMLAttributes<"section">;
       const showMoreButton = this.querySelector("button");
 
       showMoreButton?.addEventListener("click", () => {
-        const p = this.querySelector("p");
-        if (p) {
-          p.classList.remove("line-clamp-3");
+        const text = this.querySelector(".about-text");
+        if (text) {
+          text.classList.remove("line-clamp-3");
           showMoreButton.remove();
         }
       });
