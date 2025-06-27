@@ -3,6 +3,7 @@
 
 export const SITE_TITLE = "sook.dev";
 export const SITE_DESCRIPTION = "Hi, I'm Sook. A web devloper.";
+export const ASSETS_BASE_URL = "https://assets.sook.dev/";
 
 export function GET_BADGE_STYLE(type: string) {
   switch (type) {
