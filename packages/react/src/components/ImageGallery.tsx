@@ -88,8 +88,8 @@ function ImageGalleryInline({
   const activeImage = images[activeIndex];
 
   return (
-    <div className="not-prose grid bg-black rounded-md shadow-md shadow-slate-200 border border-input overflow-hidden">
-      <div className="relative w-full flex items-center justify-center">
+    <div className="not-prose flex flex-col w-full aspect-5/4 sm:aspect-4/3 bg-black rounded-md shadow-md shadow-slate-200 border border-input overflow-hidden">
+      <div className="grow relative w-full flex items-center justify-center">
         <div className="absolute inset-0 flex items-center justify-center">
           <Spinner color="var(--color-gray-100)" />
         </div>
@@ -141,7 +141,7 @@ function ImageGalleryInline({
             <button
               key={image.src}
               className={cn(
-                "relative cursor-pointer w-28 flex-shrink-0",
+                "relative cursor-pointer w-24 sm:w-28 aspect-5/3 flex-shrink-0",
                 idx === activeIndex ? "brightness-100" : "brightness-50",
               )}
               onClick={() => {
@@ -151,7 +151,10 @@ function ImageGalleryInline({
               <div className="absolute inset-0 flex items-center justify-center">
                 <Spinner color="var(--color-gray-100)" />
               </div>
-              <img className="relative rounded-sm" {...image} />
+              <img
+                className="w-full h-full object-cover relative rounded-sm"
+                {...image}
+              />
             </button>
           );
         })}

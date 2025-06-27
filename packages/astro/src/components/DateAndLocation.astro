@@ -4,8 +4,8 @@ import FormattedDate from "./FormattedDate.astro";
 import { cn } from "@website/shared/utils";
 
 type Props = {
-  from: Date;
-  to?: Date;
+  from: Date | string;
+  to?: Date | string;
   location?: string;
 } & HTMLAttributes<"div">;
 const { from, to, location, class: className, ...props } = Astro.props;
@@ -19,12 +19,12 @@ const { from, to, location, class: className, ...props } = Astro.props;
   {...props}
 >
   <div>
-    <FormattedDate date={from} />
+    <FormattedDate date={typeof from === "string" ? new Date(from) : from} />
     {
       to && (
         <>
           <span>-</span>
-          <FormattedDate date={to} />
+          <FormattedDate date={typeof to === "string" ? new Date(to) : to} />
         </>
       )
     }

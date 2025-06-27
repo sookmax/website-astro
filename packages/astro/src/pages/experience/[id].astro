@@ -50,9 +50,13 @@ const toc = generateToc([
         </Container>
       </div>
       <Container
-        class="md:max-w-full py-7 sm:py-9 xl:px-10 xl:py-7 2xl:px-24 2xl:py-10"
+        class="md:max-w-full py-7 sm:py-9 xl:px-8 xl:py-7 2xl:px-20 2xl:py-10"
       >
-        <article class={cn("prose prose-gray prose-a:text-(--tw-prose-body)")}>
+        <article
+          class={cn(
+            "prose prose-gray prose-a:text-(--tw-prose-body) prose-hr:my-8"
+          )}
+        >
           <header class="flex flex-col gap-3">
             <div class="flex items-center gap-1.5">
               <Badge dot={false} style={GET_BADGE_STYLE(experience.data.type)}>
@@ -74,7 +78,7 @@ const toc = generateToc([
               {experience.data.description}
             </p>
           </header>
-          <hr class="border-gray-100" />
+          <hr class="border-slate-200" />
           <Content
             components={{
               h2: H2,
@@ -87,7 +91,7 @@ const toc = generateToc([
       </Container>
     </div>
     <aside
-      class="hidden xl:block xl:shrink-0 xl:sticky xl:top-8 xl:min-w-60 2xl:min-w-72 xl:h-fit xl:px-8 xl:py-3"
+      class="hidden xl:block xl:shrink-0 xl:sticky xl:top-8 xl:max-w-[320px] xl:min-w-60 2xl:min-w-72 xl:h-fit xl:px-5 xl:py-3"
     >
       <TableOfContents toc={toc} />
     </aside>
