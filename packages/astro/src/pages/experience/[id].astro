@@ -40,7 +40,7 @@ const toc = generateToc([
 
 <RootLayout>
   <div class="xl:flex xl:divide-x xl:divide-slate-200">
-    <div class="flex flex-col items-center">
+    <div class="flex-1 min-w-0 flex flex-col items-center">
       <Container class="z-10 sticky top-0 w-full px-0 bg-white xl:hidden">
         <MobileHeader />
       </Container>
@@ -54,7 +54,7 @@ const toc = generateToc([
       >
         <article
           class={cn(
-            "prose prose-gray prose-a:text-(--tw-prose-body) prose-hr:my-8"
+            "prose prose-gray prose-a:font-medium prose-a:text-(--tw-prose-bold) prose-hr:my-8 prose-strong:font-medium prose-li:my-1"
           )}
         >
           <header class="flex flex-col gap-3">
@@ -91,7 +91,7 @@ const toc = generateToc([
       </Container>
     </div>
     <aside
-      class="hidden xl:block xl:shrink-0 xl:sticky xl:top-8 xl:max-w-[320px] xl:min-w-60 2xl:min-w-72 xl:h-fit xl:px-5 xl:py-3"
+      class="hidden xl:flex-[0.3] xl:block xl:sticky xl:top-8 xl:min-w-60 2xl:min-w-72 xl:h-fit xl:px-5 xl:py-3"
     >
       <TableOfContents toc={toc} />
     </aside>

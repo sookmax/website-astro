@@ -7,7 +7,7 @@ const meta = {
   title: "ImageGallery",
   parameters: {
     // Optional parameter to center the component in the Canvas. More info: https://storybook.js.org/docs/configure/story-layout
-    layout: "centered",
+    layout: "padded",
   },
 } satisfies Meta;
 
@@ -17,7 +17,7 @@ type Story = StoryObj<typeof meta>;
 // More on writing stories with args: https://storybook.js.org/docs/writing-stories/args
 export const Default: Story = {
   render: () => (
-    <div className="w-[600px]">
+    <div className="w-full">
       <ImageGallery
         images={[
           {

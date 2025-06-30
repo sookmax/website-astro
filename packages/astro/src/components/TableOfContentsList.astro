@@ -35,7 +35,11 @@ const { toc, isMobile = false, depth = 0 } = Astro.props;
               )}
             >
               <span>{heading.text}</span>
-              <span class={cn("hidden [a[aria-current='true']_&]:block")}>
+              <span
+                class={cn(
+                  "hidden [a[aria-current='true']_&]:block xl:[a[aria-current='true']_&]:hidden"
+                )}
+              >
                 <CircleSVG class="size-1.5 fill-emerald-500" />
               </span>
             </span>
