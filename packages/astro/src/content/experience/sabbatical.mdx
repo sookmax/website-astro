@@ -1,6 +1,6 @@
 ---
 title: "A Step Back to Level Up"
-description: "I took time off from work to deepen my frontend skills, explore new technologies, and build personal projects—all with the goal of becoming a more competent, well-rounded engineer."
+description: "I took time off from work to deepen my web dev and engineering skills, explore new technologies, and build personal projects—all with the goal of becoming a more competent, well-rounded engineer."
 type: "Sabbatical"
 from: 2022-10
 to: 2024-10
@@ -23,6 +23,7 @@ tags:
 ---
 
 import DateAndLocation from "@/components/DateAndLocation.astro";
+import ImageGallery from "@/components/ImageGallery.astro";
 import ImageLink from "@/components/ImageLink.astro";
 
 ## Project: My Website (1st Iteration)
@@ -40,11 +41,55 @@ Along the way, I also spent time researching the [MDX](https://mdxjs.com/) and [
 
 ## Project: Website Redesign for My Cousin
 
-<DateAndLocation class="ml-4 -mt-4 mb-4" from="2022-12" />
+<DateAndLocation class="ml-4 -mt-4 mb-4" from="2022-12" to="2023-01" />
+
+<ImageGallery images={["cousin-website-renewal.png", "epem-wix.png"]} />
+
+One of my cousins wanted to redesign the website for the university lab he was running (originally built with Wix), so I built him a brand-new site with a cleaner design, using **Next.js 13** and **Tailwind CSS**.
+
+This wasn't a commercial or paid project&mdash;it came from goodwill, and from my own curiosity to tinker with the new **App Router** and **React Server Components (RSC)** introduced in [Next.js 13](https://nextjs.org/blog/next-13).
+
+Looking back, I didn't fully understand it at the time, but I _did_ notice that navigation between pages felt noticeably slower than I'd expected. Later, I realized that this was due to the way RSC works: on every navigation, the browser hits the server again to fetch a fresh RSC payload&mdash;similar to traditional SSR or SSG sites.
+
+In contrast, earlier versions of Next.js used **client-side navigation** by default. While that approach requires a heavier initial JS payload, once everything is loaded, transitions between pages feel nearly instantaneous.
+
+This experience helped me understand a nuanced aspect of web performance: **RSC can improve initial page load times**, but it doesn't necessarily make subsequent navigations faster. It was a valuable lesson in how architectural choices affect perceived performance on the web.
 
 ## Project: Adding a CMS to My Cousin's Site
 
-<DateAndLocation class="ml-4 -mt-4 mb-4" from="2023-01" />
+<DateAndLocation class="ml-4 -mt-4 mb-4" from="2023-01" to="2023-02" />
+
+<ImageGallery
+  images={[
+    "epem-cms-1.png",
+    "epem-cms-2.png",
+    "epem-cms-3.png",
+    "epem-cms-4.png",
+    "epem-cms-5.png",
+    "epem-cms-6.png",
+    "epem-cms-7.png",
+  ]}
+/>
+
+After launching the redesigned site, an obvious limitation emerged: my cousin had to manually edit the source code and push changes to GitHub just to publish new content. It was inconvenient&mdash;and clearly not sustainable in the long run.
+
+While researching ways to solve this, I came across the term [headless CMS](https://en.wikipedia.org/wiki/Headless_content_management_system): a content management system that's decoupled from the presentation layer and serves content via API endpoints.
+
+That was exactly what I needed. After looking around, I settled on Sanity&mdash;a headless CMS with strong developer reviews, solid documentation, and a helpful [Next.js integration template](https://vercel.com/templates/blog/blog-nextjs-sanity) to get started.
+
+Once I began customizing the template and digging into the docs, I realized just how big a leap it was to go from editing markdown files to using a fully-fledged CMS. I had to:
+
+- Define structured content using [Sanity Schemas](https://www.sanity.io/docs/apis-and-sdks/introduction-to-schemas)
+
+- Customize the rich text editor with my own formatting shortcuts
+
+- Learn [GROQ](https://www.sanity.io/docs/sanity-studio-quickstart/querying-content-with-groq) — Sanity's query language
+
+- Set up preview/publish flows using [Next.js API Routes](https://nextjs.org/docs/pages/building-your-application/routing/api-routes) and [Sanity Webhooks](https://www.sanity.io/docs/compute-and-ai/webhooks#k0886e01e4e1f)
+
+I eventually got everything working the way I wanted, but the complexity of it all left me both impressed by what CMSes make possible&mdash;and curious if there might be simpler alternatives out there.
+
+Still, I think headless CMSes are incredibly empowering tools for non-technical content creators. I'm looking forward to trying out other options like [Strapi](https://strapi.io/) in the future.
 
 ## Experiment: Image Optimization with Sanity
 
