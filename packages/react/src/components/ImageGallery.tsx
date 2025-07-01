@@ -89,12 +89,16 @@ function ImageGalleryInline({
 
   return (
     <div className="not-prose flex flex-col w-full aspect-5/4 sm:aspect-4/3 bg-black rounded-md shadow-md shadow-slate-200 border border-input overflow-hidden">
-      <div className="grow relative w-full flex items-center justify-center">
+      <div className="flex-1 min-h-0 relative w-full flex items-center justify-center">
         <div className="absolute inset-0 flex items-center justify-center">
           <Spinner color="var(--color-gray-100)" />
         </div>
 
-        <img className="relative" key={activeImage.src} {...activeImage} />
+        <img
+          className="relative max-h-full object-contain"
+          key={activeImage.src}
+          {...activeImage}
+        />
 
         {/* Navigation buttons */}
         {images.length > 1 && (
@@ -134,14 +138,14 @@ function ImageGalleryInline({
       </div>
       <div
         ref={thumbnailsElRef}
-        className="w-full p-2 flex space-x-2 overflow-x-auto"
+        className="shrink-0 w-full p-2 flex space-x-2 overflow-x-auto"
       >
         {images.map((image, idx) => {
           return (
             <button
               key={image.src}
               className={cn(
-                "relative cursor-pointer w-24 sm:w-28 aspect-5/3 flex-shrink-0",
+                "relative cursor-pointer w-24 sm:w-28 aspect-5/3 flex-shrink-0 border border-gray-500 rounded-sm",
                 idx === activeIndex ? "brightness-100" : "brightness-50",
               )}
               onClick={() => {

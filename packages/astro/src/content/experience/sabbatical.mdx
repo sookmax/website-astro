@@ -75,7 +75,7 @@ After launching the redesigned site, an obvious limitation emerged: my cousin ha
 
 While researching ways to solve this, I came across the term [headless CMS](https://en.wikipedia.org/wiki/Headless_content_management_system): a content management system that's decoupled from the presentation layer and serves content via API endpoints.
 
-That was exactly what I needed. After looking around, I settled on Sanity&mdash;a headless CMS with strong developer reviews, solid documentation, and a helpful [Next.js integration template](https://vercel.com/templates/blog/blog-nextjs-sanity) to get started.
+That was exactly what I needed. After looking around, I settled on [Sanity](https://www.sanity.io/)&mdash;a headless CMS with strong developer reviews, solid documentation, and a helpful [Next.js integration template](https://vercel.com/templates/blog/blog-nextjs-sanity) to get started.
 
 Once I began customizing the template and digging into the docs, I realized just how big a leap it was to go from editing markdown files to using a fully-fledged CMS. I had to:
 
@@ -93,15 +93,115 @@ Still, I think headless CMSes are incredibly empowering tools for non-technical 
 
 ## Experiment: Image Optimization with Sanity
 
-<DateAndLocation class="ml-4 -mt-4 mb-4" from="2023-02" />
+<DateAndLocation class="ml-4 -mt-4 mb-4" from="2023-02" to="2023-03" />
+
+<ImageGallery
+  images={[
+    "image-experiment-6.png",
+    "image-experiment-7.png",
+    "image-experiment-5.png",
+    "image-experiment-2.png",
+    "image-experiment-3.png",
+    "image-experiment-4.png",
+  ]}
+/>
+
+While working with [Sanity](https://www.sanity.io/) in the previous project, I discovered that it offers a surprising number of built-in image optimization features&mdash;like:
+
+- [image dimensions](https://www.sanity.io/docs/apis-and-sdks/image-metadata#k10babf421c09) extraction
+- [low-quality image previews (LQIP)](https://www.sanity.io/docs/apis-and-sdks/image-metadata#k74bfd1db9b97)
+- [responsive images](https://www.sanity.io/docs/apis-and-sdks/image-urls#:~:text=With%20the%20Sanity,200%20pixels%20tall%3A) with multiple resolutions
+
+Images are notoriously tricky to optimize for the web, so I was excited to explore what Sanity made possible.
+
+I ended up building a simple **image gallery** component featuring next/previous buttons and a bottom thumbnail strip. This project eventually became the foundation for many other galleries I've built&mdash;including the one on this very site.
+
+- [🌐 Live demo](https://image-experiment.vercel.app/)
+- [💻 Source code](https://github.com/sookmax/image-experiment)
 
 ## Experiment: Infinite Scroll Image Gallery
 
-<DateAndLocation class="ml-4 -mt-4 mb-4" from="2023-03" />
+<DateAndLocation class="ml-4 -mt-4 mb-4" from="2023-03" to="2023-04" />
+
+<ImageGallery
+  images={[
+    "image-gallery-infinite-1.png",
+    "image-gallery-infinite-2.png",
+    "image-gallery-infinite-3.png",
+  ]}
+/>
+
+After building my first image gallery, a few new ideas came to mind&mdash;so I jumped right into a second experiment. This time, I wanted to explore:
+
+- **Infinite scroll** for loading more images
+- **Skeleton loading animations**
+- **Low-quality image previews (LQIP)** alongside skeletons
+- [**Slide-show-like animations**](https://codesandbox.io/p/sandbox/framer-motion-image-gallery-pqvx3?file=%2Fsrc%2Findex.tsx%3A11%2C3&from-embed) between image transitions
+
+This was a much more involved project, largely due to:
+
+- The complexity of managing a [**virtualized list**](https://tanstack.com/virtual/latest)
+- Coordinating transitions between the main image and its thumbnails
+- Sharing image load states across multiple components
+
+**List virtualization** is powerful for infinite scrolling&mdash;it keeps the [DOM tree](https://developer.mozilla.org/en-US/docs/Web/API/Document_Object_Model/Introduction) lean by only rendering visible items. But it's not without trade-offs:
+
+- Most virtualizers assume consistent item shapes or sizes
+- Styling them to match your exact UI can be tricky
+- Programmatically scrolling to a specific item can feel imprecise if item heights vary
+
+It's a great tool&mdash;but one that should be adopted with care after weighing its benefits and constraints.
+
+Adding animations to an image gallery adds polish&mdash;but coordinating **multiple simultaneous animations** can easily become overwhelming or distracting.
+
+Some thoughts based on this project:
+
+- If animations aren't _orchestrated_, the overall experience can feel chaotic
+- Animation libraries like [**Motion**](https://motion.dev/) are powerful, but abstract away a lot of complexity
+- Until you understand how things work under the hood, it's often best to stay close to official examples
+
+This project gave me a stronger appreciation for how much thought goes into balancing between interactivity, usability, and performance.
+
+- [🌐 Live demo](https://react-image-gallery-puce.vercel.app/)
+- [💻 Source code](https://github.com/sookmax/react-image-gallery)
 
 ## Project: Teamfight Tactics Stats Site
 
-<DateAndLocation class="ml-4 -mt-4 mb-4" from="2023-04" />
+<DateAndLocation class="ml-4 -mt-4 mb-4" from="2023-04" to="2023-05" />
+
+<ImageGallery images={["tft-top4-1.png", "tft-top4-2.png"]} />
+
+I used to play a game called [**Teamfight Tactics (TFT)**](https://teamfighttactics.leagueoflegends.com/en-us/) quite a bit—and I was curious if I could build something useful around it using [**Riot's public APIs**](https://developer.riotgames.com/apis).
+
+In TFT, the meta changes every few months with the release of a new _set_, and strategies that worked previously become obsolete. That inspired the core idea for this project: **analyzing what made players win in the early phase of each new set**—looking at things like unit compositions, traits, augments, and items used by the top 4 finishers in each game.
+
+A large portion of this project was spent:
+
+- Understanding Riot's API responses
+- Downloading assets (unit images, icons, etc.) from the [**CDRAGON API**](https://www.communitydragon.org/)
+- Writing **Node.js scripts** to fetch, parse, and aggregate large datasets  
+  (across versions, regions, leagues, and each category: units, traits, and augments)
+
+I hit blockers—especially around dealing with asset mapping and data processing mostly due to lack of proper documentation—but I pushed through in the end with lots of trial and error.
+
+The main goal was to surface patterns from top-4 finishers:
+
+- Which **units** appeared most often in winning comps?
+- What **items** were commonly equipped on those units?
+- Which **other units** were frequently paired with them?
+
+This required multi-level aggregation and a lot of data crunching—especially when dealing with item frequency per unit, and unit co-occurrence stats.
+
+On the frontend side, I built a snappy, interactive UI with:
+
+- [**List virtualization**](https://tanstack.com/virtual/latest) for performance
+- Components from [**Radix UI**](https://www.radix-ui.com/) like `Popover` and `Dialog`
+- A sprinkle of animations using [**Motion**](https://motion.dev/)
+
+I also experimented with **static site generation** using Next.js's [**static export**](https://nextjs.org/docs/app/guides/static-exports), which let me deploy everything as pre-generated HTML/JS/CSS—no server required.
+
+- [🌐 Live demo](https://tft-top4-insights.vercel.app/)
+- [💻 Source code](https://github.com/sookmax/tft-top4-insights)
 
 ## Open Source: Storybook Contributions
 
