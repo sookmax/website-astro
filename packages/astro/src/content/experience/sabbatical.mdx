@@ -198,7 +198,7 @@ On the frontend side, I built a snappy, interactive UI with:
 - Components from [**Radix UI**](https://www.radix-ui.com/) like `Popover` and `Dialog`
 - A sprinkle of animations using [**Motion**](https://motion.dev/)
 
-I also experimented with **static site generation** using Next.js's [**static export**](https://nextjs.org/docs/app/guides/static-exports), which let me deploy everything as pre-generated HTML/JS/CSS—no server required.
+I also experimented with **static site generation** using Next.js's [static export](https://nextjs.org/docs/app/guides/static-exports), which let me deploy everything as pre-generated HTML/JS/CSS—no server required.
 
 - [🌐 Live demo](https://tft-top4-insights.vercel.app/)
 - [💻 Source code](https://github.com/sookmax/tft-top4-insights)
@@ -207,17 +207,98 @@ I also experimented with **static site generation** using Next.js's [**static ex
 
 <DateAndLocation class="ml-4 -mt-4 mb-4" from="2023-05" to="2023-08" />
 
+<ImageGallery
+  images={[
+    "storybook-1.png",
+    "storybook-2.png",
+    "storybook-3.png",
+    "storybook-5.png",
+    "storybook-4.png",
+  ]}
+/>
+
+In May 2023, I finally decided to take a proper look at [Storybook](https://storybook.js.org/). I'd seen it mentioned constantly by other developers—some even calling it _indispensable_ for **UI component development**.
+
+Turns out, they weren't wrong.
+
+When I first grasped what Storybook _actually_ does—offering an isolated environment to develop and test individual UI components—it felt like I had found a missing piece in my frontend workflow. A place where components can be created, styled, composed, and tested independently from the rest of the app? That just made sense.
+
+What I appreciated most was the **separation of concerns** it enforced. You could focus purely on UI behavior without worrying about framework quirks, data-fetching, or business logic. This clear separation naturally nudged me toward writing better-structured components.
+
+The discovery was so enlightening that I felt compelled to dig deeper—and ended up making my first meaningful **contributions** to the project.
+
+What stood out to me the most was how _fun and rewarding_ it was to **collaborate** with the core maintainers. I'd ask questions when I wasn't entirely sure about something, and instead of brushing them off, they patiently offered guidance, shared broader context, and gave thoughtful feedback on everything from technical details to project conventions. It felt like having engineering mentors—something I never had during my years working as a frontend developer.
+
+Their encouragement, clear communication, and even the smallest “looks good!” in a pull request review went a long way. That positive feedback loop made me genuinely _want_ to contribute more, and gave me a deeper appreciation for the people behind the tools we rely on every day.
+
+- 🛠️ [Storybook Issues & PRs involving me](<https://github.com/storybookjs/storybook/issues?q=(is%3Aissue%20OR%20is%3Apr)%20AND%20(author%3Asookmax%20OR%20mentions%3Asookmax)>)
+
 ## Study: Structure and Interpretation of Computer Programs (SICP)
 
 <DateAndLocation class="ml-4 -mt-4 mb-4" from="2023-08" to="2023-09" />
+
+<ImageGallery images={["sicp-1.png", "sicp-2.png", "sicp-3.png"]} />
+
+As a non-CS major, I've always been curious about what computer science students actually study in college. For years, I'd been searching for a way to teach myself the fundamentals, and I kept coming back to this wonderfully curated site called [Teach Yourself Computer Science](https://teachyourselfcs.com/). I must've visited it a dozen times, each time promising myself I'd start. That promise finally stuck.
+
+I began with the legendary textbook: [Structure and Interpretation of Computer Programs (SICP)](https://sarabander.github.io/sicp/html/index.xhtml). It's as challenging as everyone says.
+
+I only made it up to section **4.4.3**, since the accompanying video lectures from [UC Berkeley's CS 61A](https://archive.org/details/ucberkeley-webcast-PL3E89002AA9B9879E?sort=title) ended there—and, admittedly, so did most of my motivation. 😅
+
+To be fair, the _core ideas_ in each chapter weren't too hard to grasp. But the **exercises** were tough. Many required background knowledge in math or electrical engineering, and they weren't something you could just solve after a quick read. Some would take hours (or days) to figure out from scratch.
+
+So I made a pragmatic choice: I mostly **read through the solutions** (like those at [sicp-solutions](http://community.schemewiki.org/?sicp-solutions) or [SICP Solutions](https://sicp-solutions.net/)) rather than grinding through each problem myself. It wasn't ideal, but my goal was more about exposure to foundational ideas than proving I could do all the exercises. I wanted to keep my time focused on learning web technologies.
+
+That said, **many of the ideas in SICP felt surprisingly relevant to modern web development**, especially React:
+
+- **Functional programming**: The predictability of pure functions
+- **Assignment and mutation**: And the headaches they cause in concurrent environments
+- **Delayed evaluation**, **memoization**, **thunks**—all things that show up in performance tuning and state management
+
+I'd love to return to this book someday with more experience—and a bit more patience.
 
 ## Project: My Website (2nd Iteration)
 
 <DateAndLocation class="ml-4 -mt-4 mb-4" from="2023-08" to="2025-02" />
 
+<ImageLink
+  link="https://website-sooks-projects.vercel.app/"
+  image="website-2nd-1.png"
+/>
+
+It was about time.
+
+After building a few side projects and exploring different web technologies, I felt ready to take another crack at my **personal website**. Unlike the first version—which I mostly treated as a blog I never really updated—the goal for this second iteration was clear: create a detailed, thoughtful write-up of my professional journey since college, including everything I'd been working on during my sabbatical.
+
+I wanted it finished by the time I started looking for my next job. A place to showcase my projects, reflect on what I've learned, and hopefully tell a coherent story about where I've been and where I'm going. It took me around two months to build the first "complete" version, but I kept refining features and content well into early 2025.
+
+**Writing** was just as painful (if not more so) than the actual development. It turns out: trying to write clearly and honestly about past experiences, in a way that makes sense to others, is _really_ hard.
+
+On the implementation side, I reused the **image gallery components** I had experimented with previously, leaned on Next.js's [static export](https://nextjs.org/docs/app/guides/static-exports), and built a solid **Storybook** workflow. It also became a practical exercise in setting up a **monorepo** using [pnpm workspaces](https://pnpm.io/workspaces). Knowing from my Storybook contributions that its Next.js support wasn't as polished as its Vite counterpart, I split out a dedicated package for a Vite-powered Storybook setup—allowing me to develop components in isolation with fewer headaches.
+
+As the number of images on the site grew, bundling them in source control became increasingly unwieldy. I ended up setting up [Cloudflare R2](https://www.cloudflare.com/products/r2/) for image hosting—it was simple, fast, and essentially free for a small, low-traffic site like mine.
+
+Personal websites are something I've always admired. In fact, they're part of the reason I wanted to become a web developer in the first place. There's just something deeply satisfying about having a tiny corner of the internet that you fully control—from the design to the content to the interactivity. I still think that's one of the coolest things the web allows us to do. 😎
+
 ## Open Source: React Aria Contributions
 
 <DateAndLocation class="ml-4 -mt-4 mb-4" from="2023-10" to="2024-03" />
+
+<ImageGallery images={["react-aria-1.png", "react-aria-2.png"]} />
+
+I've always appreciated a well-crafted UI component library—creating one that gracefully handles browser quirks, device inputs, and accessibility concerns is no small feat. So when I came across [React Aria](https://react-spectrum.adobe.com/react-aria/index.html), I was instantly hooked and wanted to learn how it worked under the hood. That curiosity led me to contribute a little to this amazing project.
+
+**Web accessibility has long been a sore spot for me.** I know it's important—essential, even—but building it right is hard. Turning best practices from [WAI-ARIA](https://www.w3.org/WAI/standards-guidelines/aria/) into robust components takes a lot of time and care. And let's face it: most deadlines don't leave much room to build for users of assistive technologies. Even when you _do_ have time, how many teams have the resources to test across screen readers and other tools?
+
+React Aria gave me a glimpse into that world. Just like we have browser inconsistencies, there are quirks between different **assistive technologies (AT)** too. Each screen reader or AT behaves a little differently, which adds a whole new layer of complexity.
+
+That's why libraries like React Aria are so valuable. It's backed by [Adobe](https://www.adobe.com/), who dogfoods the library through their own apps, and they have the resources to test it thoroughly across ATs. The team behind it—including [Devon Govett](https://github.com/devongovett), creator of [Parcel](https://parceljs.org/)—is incredibly talented, thoughtful, and open to contributions. Every interaction I've had with the core maintainers has been professional, thoughtful, and inspiring.
+
+There's also something cathartic about reading through issues created by fellow developers—trying to reproduce their problems, understand the root cause, and either fix them or come up with a sensible workaround. It's like helping a stranger untangle a knot you've seen before.
+
+**Open source contributions can be intimidating**—and yeah, sometimes they are. But they're also _deeply_ rewarding. You get to learn from some of the most experienced engineers in the industry while giving back to a community you care about.
+
+- 🛠️ [React Aria Issues & PRs involving me](<https://github.com/adobe/react-spectrum/issues?q=(is%3Aissue%20OR%20is%3Apr)%20AND%20(author%3Asookmax%20OR%20mentions%3Asookmax)>)
 
 ## Study: Data Structures and Algorithms
 
