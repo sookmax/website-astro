@@ -304,14 +304,76 @@ There's also something cathartic about reading through issues created by fellow 
 
 <DateAndLocation class="ml-4 -mt-4 mb-4" from="2023-10" to="2024-03" />
 
+<ImageGallery
+  images={[
+    "algorithms-1.png",
+    "algorithms-2.png",
+    "algorithms-3.png",
+    "algorithms-4.png",
+    "algorithms-5.png",
+  ]}
+/>
+
+I was hesitant at first. The idea of learning **data structures and algorithms** "the proper way," as outlined in [Teach Yourself Computer Science](https://teachyourselfcs.com/#algorithms), seemed like a serious time commitment—and frankly, a bit intimidating.
+
+But eventually, I bit the bullet. I figured I'd be doing some [LeetCode](https://leetcode.com/) grinding as part of job prep anyway, so I might as well take the time to build a solid foundation along the way.
+
+I began with [Skiena's _The Algorithm Design Manual_](https://www.amazon.com/Algorithm-Design-Manual-Steven-Skiena/dp/1848000693/) and the accompanying [video lectures](https://www3.cs.stonybrook.edu/~skiena/373/videos/), but I switched tracks just before the graph algorithms section. I ended up preferring [Sedgewick's textbook](https://algs4.cs.princeton.edu/home/) and his Coursera courses—[Part 1](https://www.coursera.org/learn/algorithms-part1) and [Part 2](https://www.coursera.org/learn/algorithms-part2)—and stuck with those instead.
+
+What I appreciated most about Sedgewick's materials was how every algorithm was paired with concrete Java implementations. For me, seeing the concepts and code side by side made everything click more easily. I also liked how the book took time to explain Java fundamentals early on. That made a big difference for someone like me who wasn't very familiar with the language, especially when it came time to submit assignments.
+
+The hardest part, hands down, was understanding the theory behind performance analysis—order of growth, mathematical proofs, and especially some of the advanced graph and string algorithms.
+
+I won't pretend I absorbed it all—truth be told, a lot of it is already slipping from memory. But I'm glad I pushed through and studied the subject at least once. It gave me a better appreciation for the underlying mechanics of the code I write, and it made me feel more grounded as an engineer.
+
 ## Practice: LeetCode Problem Solving
 
 <DateAndLocation class="ml-4 -mt-4 mb-4" from="2024-03" to="2024-05" />
 
+<ImageGallery images={["leetcode-1.png", "leetcode-2.png", "leetcode-3.png"]} />
+
+Eventually, it was time to confront [LeetCode](https://leetcode.com/) again—this time, with a bit more confidence. I had just completed my first serious deep dive into **data structures and algorithms (DSA)**, so I felt better prepared than ever before.
+
+For this round, I followed a thoughtfully curated list of 150 problems known as [NeetCode 150](https://neetcode.io/practice). It was a great way to put what I had just learned into practice through real implementations of classic algorithms and patterns.
+
+I won't pretend I _loved_ solving LeetCode problems (even post-DSA study), but overall it was a worthwhile experience. It helped reinforce many of the concepts I had just encountered—and it gave me a clearer sense of how those ideas are converted to actual code.
+
+While going through the list, I also realized there were a few important concepts I hadn't touched in my initial DSA study—most notably **backtracking** and **dynamic programming**. So I circled back to study those topics using [Skiena's book](https://www.amazon.com/Algorithm-Design-Manual-Steven-Skiena/dp/1848000693/) (for both) and [CLRS](https://www.amazon.com/Introduction-Algorithms-fourth-Thomas-Cormen/dp/026204630X) (for dynamic programming and greedy algorithms). Oddly enough, [Sedgewick's book](https://algs4.cs.princeton.edu/home/)—which had been my primary learning resource—doesn't cover these topics at all 🤷‍♂️.
+
+At some point in the future, I'd like to revisit NeetCode 150 and go through the problems again—partly to strengthen my understanding, and partly just to get faster and more fluent with the patterns.
+
 ## Study: Designing Data-Intensive Applications
 
-<DateAndLocation class="ml-4 -mt-4 mb-4" from="2024-06" />
+<DateAndLocation class="ml-4 -mt-4 mb-4" from="2024-06" to="2024-07" />
+
+<ImageGallery images={["ddia-1.png", "ddia-2.png"]} />
+
+As I was planning to wrap up my sabbatical and start preparing for the job search, I wanted to study one more subject from [Teach Yourself Computer Science](https://teachyourselfcs.com/)—and I picked up [Designing Data-Intensive Applications (DDIA)](https://www.amazon.com/Designing-Data-Intensive-Applications-Reliable-Maintainable/dp/1449373321) to read.
+
+Distributed systems like Hadoop and Spark had always fascinated me—even back when I was working as a data analyst. In fact, I once went out of my way to build a mini Hadoop cluster as [a side project](/experience#project-hadoop) back in 2018. So I was genuinely excited to dive into this book.
+
+Overall, I'd say the author did a fantastic job explaining the big ideas behind distributed systems—strategies like **replication** and **partitioning**, and the many things that can go wrong when building and operating these systems at scale. In that sense, it's remarkable that these incredibly complex systems are not just theoretical, but actually power real products used by millions of people with minimal downtime.
+
+I also learned a lot about the inner workings of traditional relational databases—things like **indexes**, **transactions**, and how data is physically stored on disk. Reading this made me wish I had encountered the book earlier in my career. It even helped me better understand concepts like _OLAP_ and _data warehouses_, which I had often heard back in my data analyst days but only vaguely understood.
+
+I'm not sure whether I'll ever get to work with distributed systems at a massive scale as a frontend developer, but I still think there's a lot of value in understanding the "invisible" backend infrastructure that powers the software we use every day.
 
 ## Wrap-up: Interview Prep & Job Search
 
 <DateAndLocation class="ml-4 -mt-4 mb-4" from="2024-07" to="2024-10" />
+
+<ImageGallery images={["interview-prep-job-search-loop.png"]} />
+
+While I've more or less given up on applying to FAANG—or really, any U.S. tech company—due to visa constraints and the fact that I'm currently living outside the States, I still thought it would be a good idea to go through some _FAANG-style_ interview prep while exploring opportunities in the local market.
+
+In particular, I found studying **system design** to be incredibly helpful—not just for interviews, but also for building a broader understanding of modern software architecture. Knowing what kinds of technologies are out there, when to use them, and what tradeoffs they come with—even at a high level—is valuable for any software engineer. No wonder there's such heavy emphasis on system design in technical interviews. As for resources, I found [Hello Interview](https://www.hellointerview.com/learn/system-design/in-a-hurry/introduction) to be a great site. Revisiting [DDIA](https://www.amazon.com/Designing-Data-Intensive-Applications-Reliable-Maintainable/dp/1449373321) was also incredibly useful for this purpose.
+
+To keep my algorithmic skills sharp, I've been dedicating one day a week to **LeetCode practice**. And to not forget my identity as a frontend developer, I've set aside two days a week for **frontend-specific work**—currently going through resources on [GreatFrontEnd](https://www.greatfrontend.com/), with plans to explore other frameworks and libraries soon.
+
+---
+
+This marks the end of my first (of possibly more to come) sabbatical, and I'm glad to have come out of it with a stronger foundation. That's exactly what I hope to gain from taking career breaks—because, let's face it, there's rarely time for deep learning in most work environments. More often than not, you have to settle for shallow, surface-level knowledge just to keep up with deadlines.
+
+This two-year sabbatical was a bit of an experiment: I wanted to see whether I could maintain the discipline to follow a long-term learning plan, and whether I could stay curious and motivated without the external structure of a job. And honestly, I think I did pretty well. I learned a lot, built some cool stuff, and even made a few open source contributions along the way.
+
+So until the next sabbatical—peace out! ✌️

@@ -1,6 +1,6 @@
 ---
 title: "Frontend Developer at Dawinproperty"
-description: "Worked on a highly interactive 2D map-based React single page application. The more we added interactive features, the more we had to deal with regression bugs and unintended side effects. Thought for the first time how important it was to have automated tests."
+description: "Worked on an interactive map-based real estate SPA. Learned first-hand how tricky untested UI logic can become. First time seriously considering automated testing and better component design."
 type: "Work"
 from: 2020-12
 to: 2021-06
@@ -9,3 +9,30 @@ atURL: "https://dawin.xyz/"
 location: "Seoul, South Korea"
 tags: ["React", "React Router", "Redux-Saga", "Node.js", "Express.js", "MySQL"]
 ---
+
+import ImageGallery from "@/components/ImageGallery.astro";
+
+<ImageGallery
+  images={[
+    "dawin-1.png",
+    "dawin-2.png",
+    "dawin-3.png",
+    "dawin-4.png",
+    "dawin-5.png",
+    "dawin-6.png",
+  ]}
+/>
+
+Having worked exclusively at B2B companies up to this point, I was curious what it would be like to build products for a broader consumer audience. Dawinproperty, which runs a **real estate marketplace** site, offered exactly that—users could browse properties via an interactive 2D map and sellers could list homes for sale. I was excited to work on something so directly tied to the experience of end users.
+
+The frontend was a React single-page application using [React Router](https://reactrouter.com/en/main) and [Redux-Saga](https://redux-saga.js.org/) for global state management. Map rendering came from [Kakao Maps API](https://apis.map.kakao.com/), and one of my first tasks was adding new features to the map, like satellite view and a distance-measuring tool.
+
+I also worked on improving the listing form that sellers used to post properties. It was a long, multi-step form, but lacked any way to save progress—users would lose everything if something went wrong. To address this, we added a "draft" mechanism on the backend that saved form state between steps. While mostly a backend task, it was a Node.js app using [Express](https://expressjs.com/) and [MySQL](https://www.mysql.com/), so I was able to pitch in thanks to my past experience with SQL.
+
+Later, I was also asked to build a small API server that collected and aggregated data from a third-party source. Writing the endpoint wasn't too bad, but implementing the data aggregation logic was a lot harder than I expected. What would have been a straightforward `GROUP BY` in SQL turned into an overly complicated recursive `groupBy()` and reducer logic with tons of `Array.flat()` and `flatMap()` in JavaScript. That made me appreciate how much more ergonomic data manipulation can be in languages like R or Python.
+
+On the frontend, I started noticing a recurring problem I'd seen before: bloated components with sprawling `useEffect()`s and tangled logic. But here it was even worse, because there were a handful of massive components shared across the app that tried to do everything—fetching, rendering, interaction, business logic—all crammed together. The code was hard to read, error-prone, and very difficult to extend without side effects.
+
+What surprised me was that this was an intentional design choice by one of the lead frontend engineers. She preferred keeping logic centralized in big components and pushed back whenever I proposed breaking them into smaller, more modular pieces. Our philosophies around component design were fundamentally at odds, and despite trying to adapt, I found it increasingly difficult to do meaningful frontend work under that model. It ultimately became one of the main reasons I decided to move on.
+
+Still, this job helped clarify my thoughts around React component architecture and the need for better testing and isolation in UI-heavy apps. It was the first time I seriously considered the value of **automated tests**, not just for correctness but for enabling refactoring and safe iteration.

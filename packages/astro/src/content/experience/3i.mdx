@@ -21,3 +21,33 @@ tags:
     "Vite",
   ]
 ---
+
+import ImageGallery from "@/components/ImageGallery.astro";
+
+<ImageGallery
+  images={[
+    "3i-1.png",
+    "3i-2.png",
+    "3i-3.png",
+    "3i-4.png",
+    "3i-5.png",
+    "3i-6.png",
+    "3i-7.png",
+    "3i-8.png",
+    "3i-9.png",
+    "3i-10.png",
+    "3i-11.png",
+  ]}
+/>
+
+Looking back, the main reason I joined this company was probably because I wanted to experience something new. I knew they were using **Vue** (which I had no prior experience with) instead of **React** (my comfort zone), and that the work would involve **WebGL**—a technology I had zero exposure to at the time. I was also drawn to the company's vibe, which felt refreshingly different from other Korean companies I'd worked at. In fact, I was about to accept an offer elsewhere, but I ended up switching to 3i almost on a whim after the final interview.
+
+Trying something new can be exciting and rewarding—but in this case, it was also pretty overwhelming. I ended up feeling _burnt out_, mostly because there was **nobody left** at the company who understood the core codebase. The original developers behind the **Vue.js** and **Three.js** apps had long left, and no documentation or internal knowledge base was preserved. (In hindsight, I probably should've taken that as a red flag… but I stuck around.)
+
+Despite all this, I learned _a ton_—especially about **3D graphics**, while working on a complete rewrite of the company's JavaScript-based panoramic 3D viewer (similar to Google Street View). It was daunting at first, but I managed to ship two versions: [v1](https://tour3d-v1.vercel.app/) and [v2](https://tour3d-v2.vercel.app/), both with fairly detailed documentation. Resources like the [three.js manual](https://threejs.org/manual/#en/fundamentals), [Three.js Journey](https://threejs-journey.com/), and the book [_Introduction to Computer Graphics_](https://math.hws.edu/graphicsbook/index.html) were lifesavers.
+
+It was also during this time that I first became interested in **software design patterns**. I was dealing with lots of loosely coupled classes that needed to communicate without knowing about each other. I eventually ended up copying [mrdoob's `eventdispatcher.js`](https://github.com/mrdoob/eventdispatcher.js) to help decouple those interactions. This experience taught me how tricky it is to strike the right level of **abstraction**—sometimes I exposed too few public APIs, making components inflexible; other times, I exposed too much, creating tight **coupling** between classes. That struggle actually planted the seed that led me to pursue **CS fundamentals** later—and ultimately take a sabbatical from work to do so.
+
+Outside of 3D and Three.js, I was also exposed to a number of web technologies for the first time: **Vue 2 & 3**, **TypeScript**, **Rollup**, **Vite**, as well as **VitePress** and **Docusaurus** for documentation.
+
+Strangely, even though I didn't have major issues using Vue, I often found myself _missing React_. I remember reading [this section](https://legacy.reactjs.org/docs/reconciliation.html#motivation) of the old React docs and thinking: _whoever wrote this clearly knows what they're doing._ It had an unmistakable tone of clarity and authority. While I have a lot of respect for [Evan You](https://github.com/yyx990803), Vue's creator, and the Vue community as a whole, I just didn't get the same feeling when reading Vue's docs. And to be honest, part of my draw back to React was probably due to its ecosystem and voices like [Dan Abramov](https://github.com/gaearon), who've written so many thoughtful, in-depth [articles about React](https://overreacted.io/). So even though my time at 3i had nothing to do with React, it ended up making me want to come back to it.

@@ -17,6 +17,7 @@ import { PAGE_TITLE_ID } from "@/consts";
 import MobileTableOfContents from "@/components/MobileTableOfContents.astro";
 import MobileHeader from "@/components/MobileHeader.astro";
 import A from "@/components/mdx/A.astro";
+import ExternalLinkSVG from "@/images/external-link.svg";
 
 export const getStaticPaths = (async () => {
   const experiences = await getCollection("experience");
@@ -68,12 +69,27 @@ const toc = generateToc([
                 location={experience.data.location}
               />
             </div>
-            <h1
-              id={PAGE_TITLE_ID}
-              class="not-prose text-2xl lg:text-3xl font-bold text-slate-900 scroll-m-52 xl:scroll-m-30"
-            >
-              {experience.data.title}
-            </h1>
+            <div class="not-prose flex items-center justify-between">
+              <h1
+                id={PAGE_TITLE_ID}
+                class="text-2xl lg:text-3xl font-bold text-slate-900 scroll-m-52 xl:scroll-m-30"
+              >
+                {experience.data.title}
+              </h1>
+              {
+                experience.data.at && experience.data.atURL && (
+                  <a
+                    class="text-primary-base hover:text-primary-dark"
+                    title={experience.data.at}
+                    href={experience.data.atURL}
+                    target="_blank"
+                    rel="noopener noreferrer"
+                  >
+                    <ExternalLinkSVG class="size-4" />
+                  </a>
+                )
+              }
+            </div>
             <p class="not-prose mt-3 text-lg/8 font-medium text-slate-600">
               {experience.data.description}
             </p>
