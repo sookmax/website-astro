@@ -12,6 +12,7 @@ export function GET_BADGE_STYLE(type: string) {
     case "Sabbatical":
       return 4;
     case "Education":
+      return 5;
     case "Project":
       return 3;
     default:

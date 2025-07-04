@@ -13,6 +13,8 @@ export function sortExperiencesByDate(
   experiences: CollectionEntry<"experience">[],
 ) {
   return experiences.sort(
-    (a, b) => b.data.from.valueOf() - a.data.from.valueOf(),
+    (a, b) =>
+      (b.data.to ? b.data.to : b.data.from).valueOf() -
+      (a.data.to ? a.data.to : a.data.from).valueOf(),
   );
 }

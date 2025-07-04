@@ -1,6 +1,6 @@
 ---
 title: "From Data Analyst to Frontend Engineer at AgileSoDA"
-description: "My first engineering job. Started out as a data analyst, but my growing interest in systems and software development led me to transition into a full-time engineer role, eventually specializing in frontend. A pivotal experience that shaped my career path."
+description: "My first engineering job. Started out as a data analyst, but my growing interest in computer systems and software development led me to transition into a full-time engineer role, eventually specializing in frontend. A pivotal experience that shifted my career path."
 type: "Work"
 from: 2017-04
 to: 2020-12
@@ -36,7 +36,7 @@ tags:
 import ImageGallery from "@/components/ImageGallery.astro";
 import DateAndLocation from "@/components/DateAndLocation.astro";
 
-## Starting Out: Life as a Data Analyst
+## Starting Out: Data Analyst
 
 <DateAndLocation class="ml-4 -mt-4 mb-4" from="2017-04" to="2019-04" />
 
@@ -52,23 +52,21 @@ import DateAndLocation from "@/components/DateAndLocation.astro";
   ]}
 />
 
-This was my third and final job as a data analyst—and the one that changed everything.
+This was my third and final job as a data analyst—and the stepping stone that led me to become a web developer.
 
-Roughly half of my time here was spent on projects attempting to predict stock price movements. Unsurprisingly, we failed pretty hard—our models hovered around 50% accuracy, a glorified coin toss 😂. In hindsight, we leaned too much on modeling without truly understanding the data or domain—and honestly, even the modeling itself wasn’t that deep. We, including the lead analyst, treated a sophisticated algorithm like [XGBoost](https://en.wikipedia.org/wiki/XGBoost) as just another function call, blindly tweaking hyperparameters and hoping for the best.
+Roughly half of my time here was spent on projects attempting to predict stock price movements. Unsurprisingly, we failed pretty hard—our models hovered around 50% accuracy, a glorified coin toss 👍. In hindsight, we leaned too much on modeling without truly understanding the data or domain—and honestly, even the modeling itself wasn't that deep. We, including the lead analyst, treated a sophisticated algorithm like [XGBoost](https://en.wikipedia.org/wiki/XGBoost) as just another function call, blindly tweaking hyperparameters and hoping for the best.
 
-It baffled me how some professionals could hold advanced degrees yet treat complex models like black boxes without making an effort to understand what’s going on under the hood. This project felt like a failure from the very start.
+It baffled me how some professionals could hold advanced degrees yet treat complex models like black boxes without making an effort to understand what's going on under the hood. This project felt like a failure from the very start.
 
-When the data doesn’t contain any meaningful signals, no amount of modeling or data processing will improve the outcome—it’s still garbage in, garbage out. And what we often mistook for a “signal” turned out to be noise or even errors in the pipeline.
+When the data doesn't contain any meaningful signals, no amount of modeling or data processing will improve the outcome—in other words, garbage in, garbage out. And what we often mistook for a “signal” turned out to be noise or even errors in the data processing pipeline.
 
-That’s ultimately why I started losing interest in data analytics. I was frustrated by how much the quality of a data analyst’s work depended entirely on the quality of the data—and high-quality data was rare in the projects I was on.
+That's ultimately why I started losing interest in data analytics. I was frustrated by how much the quality of a data analyst's work _depended_ entirely on the quality of the data—and high-quality data was rare in the projects I was on.
 
 On the other hand, I found myself far more engaged in the peripheral IT work that was nonetheless essential for data analysts to get things done: Linux shell scripting, cron jobs, process management, SSH tunneling—not to mention distributed big data technologies like **Hadoop** and **Spark**.
 
 So I was lucky when I got involved in a project that required migrating client data from Oracle to our analytics cluster, which ran on [HDFS](https://hadoop.apache.org/docs/r1.2.1/hdfs_design.html). I used [Sqoop](https://sqoop.apache.org/) to move entire databases into [Hive tables](https://docs.cloudera.com/HDPDocuments/HDP2/HDP-2.4.2/bk_dataintegration/content/using_sqoop_to_move_data_into_hive.html), and manually rewrote complex Oracle SQL into HiveQL.
 
-Our team had a dedicated engineer for this, but they rarely showed up at the client site—so I figured it out myself.
-
-That initiative—and my growing curiosity for engineering—paved the way for a role change that would shape the rest of my career.
+This kind of hands-on experience—and my growing curiosity for engineering—paved the way for a role change that would shape the rest of my career.
 
 ## Switching Tracks: My First Engineering Role
 
@@ -109,14 +107,14 @@ That initiative—and my growing curiosity for engineering—paved the way for a
   ]}
 />
 
-After repeatedly showing my interest and aptitude for engineering work, I was finally allowed to transfer to the development team. Our product was a B2B analytics platform targeted at fellow data analysts—so I brought in the unique advantage of having once been the user myself.
+After repeatedly showing my interest and aptitude for engineering work, I was finally allowed to transfer to the development team. Our product was a _B2B analytics platform_ targeted at fellow data analysts—so I brought in the unique advantage of having once been the user myself.
 
 I was optimistic. Maybe even overconfident. I thought my background in R, Python, and Linux would help me ramp up quickly. What I didn't anticipate was the sheer scale of the stack I was thrown into:
 
 - A backend in Java (with [Vert.x](https://vertx.io/docs/)),
-- A frontend in React,
-- MariaDB as our database,
-- Deployed on Docker and Kubernetes—despite the fact that a single-node setup probably would've sufficed.
+- A frontend in [React](https://react.dev/),
+- [MariaDB](https://mariadb.com/docs/) as our database,
+- Deployed on [Docker](https://www.docker.com/) and [Kubernetes](https://kubernetes.io/)—despite the fact that a single-node setup probably would've sufficed.
 
 I spent months working 3-4 extra hours every night just to catch up. Reading docs, debugging unfamiliar codebases, failing and learning repeatedly. But slowly, things began to click.
 
@@ -127,11 +125,9 @@ Eventually, I was building major features independently. But as I got more famil
 - Why choose Vert.x over more conventional frameworks?
 - Why use [GlusterFS](https://www.gluster.org/) when we didn't need distributed storage?
 
-I didn't always have answers, but these questions sharpened my technical instincts. And they made me hungry to specialize further.
+These questions felt important because they directly impacted our productivity as we tried to build a real product—and we were constantly bogged down by the friction these technologies introduced.
 
-## Finally, Frontend
-
-<DateAndLocation class="ml-4 -mt-4 mb-4" from="2020-08" to="2020-12" />
+I didn't always find clear answers, and the more aware I became of the issues, the more frustrated I felt&mdash;in hindsight, this growing frustration probably planted the seed for me to look for a better engineering opportunity.
 
 <ImageGallery
   images={[
@@ -140,6 +136,17 @@ I didn't always have answers, but these questions sharpened my technical instinc
     "agilesoda-swe-33.png",
     "agilesoda-swe-34.png",
     "agilesoda-swe-35.png",
+  ]}
+/>
+
+My frustration actually peaked with the state of the frontend codebase. The React app was bootstrapped with [this now-defunct boilerplate](https://github.com/erikras/react-redux-universal-hot-example), meant for isomorphic rendering. But we were only doing **client-side rendering**—meaning we didn't need all the overhead of Node.js and SSR and a simple static hosting would have sufficed, yet we still had a complex server and bloated architecture. I gave an internal presentation just to express my concern.
+
+## Finally, a Greenfield Frontend Project
+
+<DateAndLocation class="ml-4 -mt-4 mb-4" from="2020-08" to="2020-12" />
+
+<ImageGallery
+  images={[
     "agilesoda-swe-36.png",
     "agilesoda-swe-37.png",
     "agilesoda-swe-38.png",
@@ -152,16 +159,16 @@ I didn't always have answers, but these questions sharpened my technical instinc
   ]}
 />
 
-What pushed me toward frontend was—ironically—a terrible frontend codebase.
+I was fortunate enough later on to be asked to build the UI for a brand new product _from scratch_. I was thrilled. Finally, I could:
 
-The app was bootstrapped with [this now-defunct boilerplate](https://github.com/erikras/react-redux-universal-hot-example), meant for isomorphic rendering. But we were only doing client-side rendering—meaning we didn't need all the overhead of Node.js and SSR, yet we still had a complex server and bloated architecture. I gave an internal presentation just to express my frustration.
-
-Fortunately, I was later asked to build the UI for a brand new product _from scratch_. I was thrilled. Finally, I could:
-
-- Use modern React with hooks (no more class components!)
-- Pick sensible libraries: [Blueprint.js](https://blueprintjs.com/docs/) and [TanStack Table](https://tanstack.com/table/latest) for UI, [ECharts](https://echarts.apache.org/en/index.html) and [react-chartjs-2](https://react-chartjs-2.js.org/) for visualizations
+- Use modern React with **hooks** (no more class components)
+- Pick sensible libraries (while keeping the dependencies minimal) such as:
+  - [Blueprint.js](https://blueprintjs.com/docs/)
+  - [TanStack Table](https://tanstack.com/table/latest)
+  - [ECharts](https://echarts.apache.org/en/index.html)
+  - [styled-components](https://styled-components.com/)
 - Avoid unnecessary complexity.
 
-But as excited as I was about hooks, I quickly ran into issues with `useEffect()`. Some effects grew so convoluted that I had to sprinkle in `console.log()` just to understand them. I overused them due to my limited understanding of the React rendering model, and in the end, some of my own `useEffect()`s were so fragile I was afraid to touch them.
+But as excited as I was about hooks, I quickly ran into issues with `useEffect()`. Some effects grew so convoluted that I had to sprinkle in `console.log()` just to understand their runtime behaviors. I admit I overused them due to my limited understanding of the React rendering model, and in the end, some of my own `useEffect()`s were so fragile I was afraid to touch them.
 
-That pain stuck with me—and it was the beginning of my journey toward writing better, more maintainable frontend code. In many ways, it also marked the true start of my identity as a frontend developer.
+That pain stuck with me—and it was the beginning of my journey toward writing better, more maintainable frontend code. In many ways, it also marked the true start of my identity as a **frontend developer**.

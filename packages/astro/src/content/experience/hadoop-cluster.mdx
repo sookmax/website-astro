@@ -1,0 +1,57 @@
+---
+title: "Building a Mini Hadoop Cluster for Fun"
+description: "What started as a fun side project—setting up a Hadoop/Spark cluster with physical mini PCs—turned out to be surprisingly useful later when I repurposed it as a Kubernetes dev cluster at work."
+type: "Project"
+from: 2017-10
+to: 2017-12
+as: "Data Analyst"
+location: "Seoul, South Korea"
+tags: ["CentOS", "Hadoop", "YARN", "Spark", "RStudio Server"]
+---
+
+import ImageGallery from "@/components/ImageGallery.astro";
+
+<ImageGallery
+  images={[
+    "hadoop-1.png",
+    "hadoop-2.png",
+    "hadoop-3.png",
+    "hadoop-4.png",
+    "hadoop-5.png",
+    "hadoop-6.png",
+    "hadoop-7.png",
+    "hadoop-8.png",
+    "hadoop-9.png",
+    "hadoop-10.png",
+    "hadoop-11.png",
+    "hadoop-12.png",
+    "hadoop-13.png",
+    "hadoop-14.png",
+    "hadoop-15.png",
+    "hadoop-16.png",
+    "hadoop-17.png",
+    "hadoop-18.png",
+    "hadoop-19.png",
+    "hadoop-20.png",
+    "hadoop-21.png",
+    "hadoop-22.png",
+    "hadoop-23.png",
+  ]}
+/>
+
+Back in 2016-2017, I was completely fascinated by the world of **distributed computing**—especially with tools like [Hadoop](https://hadoop.apache.org/) and [Apache Spark](https://spark.apache.org/). The idea that a cluster of machines could work together to process massive datasets—scaling computation across nodes like a little data center—was just too cool to ignore.
+
+Sure, I could've set everything up using virtual machines on a laptop. But instead, I went the "fun" (read: expensive and unnecessary) route and built a physical Hadoop cluster using four **mini PCs**—one for each node. Looking back, it was absolutely overkill, but it made the project all the more enjoyable.
+
+I configured everything manually:
+
+- Chose [CentOS](https://www.centos.org/) as the Linux distro
+- Tuned CPU fan speeds (those tiny machines could get loud!)
+- Assigned Hadoop and Spark daemons across nodes
+- Set up [RStudio Server](https://posit.co/products/open-source/rstudio-server/) on one node so I could interact with **HDFS** and submit **Spark jobs through R**
+
+Although I didn't get much practical use out of the cluster at the time, it laid a solid foundation in distributed systems, and I learned a ton about networking, cluster orchestration, and data infrastructure.
+
+In fact, I ended up repurposing the same hardware later on as a **Kubernetes dev cluster**, which turned out to be incredibly handy during my early engineering career.
+
+Sometimes you build something just for fun—and it ends up paying off in ways you never expect.
