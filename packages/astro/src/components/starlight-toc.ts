@@ -113,7 +113,7 @@ export class StarlightTOC extends HTMLElement {
     //   document.querySelector("header")?.getBoundingClientRect().height || 0;
     const navBarHeight =
       document.getElementById("main-breadcrumbs")?.getBoundingClientRect()
-        .height || 36;
+        .height || 0;
     // `<summary>` only exists in mobile ToC, so will fall back to 0 in large viewport component.
     // const mobileTocHeight =
     // this.querySelector("summary")?.getBoundingClientRect().height || 0;
@@ -122,7 +122,7 @@ export class StarlightTOC extends HTMLElement {
         .height || 0;
     const top = navBarHeight + mobileTocHeight;
     /** End intersections `53px` later. This is slightly more than the maximum `margin-top` in Markdown content. */
-    const bottom = top + 100;
+    const bottom = top + 50;
     const height = document.documentElement.clientHeight;
     return `-${top}px 0% ${bottom - height}px`;
   }

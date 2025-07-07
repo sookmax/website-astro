@@ -34,7 +34,7 @@ const { toc, isMobile = false, depth = 0 } = Astro.props;
                 isMobile ? "justify-between" : "space-x-3"
               )}
             >
-              <span>{heading.text}</span>
+              <span class="truncate">{heading.text}</span>
               <span
                 class={cn(
                   "hidden [a[aria-current='true']_&]:block xl:[a[aria-current='true']_&]:hidden"

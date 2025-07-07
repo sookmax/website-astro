@@ -4,7 +4,8 @@ import TableOfContentsList from "./TableOfContentsList.astro";
 import type { HTMLAttributes } from "astro/types";
 import type { TOC } from "@/utils/toc";
 import { cn } from "@website/shared/utils";
-import TinyWaveFormIcon from "./TinyWaveFormIcon.astro";
+import CircleArrowRightSVG from "@website/shared/svg/circle-arrow-right.svg";
+import HalfCirclesIcon from "./HalfCirclesIcon.astro";
 
 type Props = HTMLAttributes<"nav"> & {
   toc: TOC;
@@ -18,13 +19,10 @@ const { toc, class: className, ...props } = Astro.props as Props;
   data-max-h={toc.options.maxHeadingLevel}
 >
   <div class="flex items-center space-x-2">
-    <TinyWaveFormIcon
-      colors={["fill-slate-300", "fill-emerald-500"]}
-      class="h-2.5 w-2.5"
-    />
+    <HalfCirclesIcon class="bg-emerald-500" />
     <nav
       aria-labelledby="starlight__on-this-page--mobile"
-      class={cn(className, "w-full select-none")}
+      class={cn(className, "flex-1 min-w-0 select-none")}
       {...props}
     >
       <details id="starlight__mobile-toc">
@@ -32,18 +30,27 @@ const { toc, class: className, ...props } = Astro.props as Props;
           id="starlight__on-this-page--mobile"
           class="cursor-pointer py-2.5 flex items-center list-none [&::-webkit-details-marker]:hidden text-sm font-medium text-gray-500"
         >
-          <div class="flex items-center space-x-2">
-            <span>On this page</span>
+          <div class="max-w-full flex items-center space-x-1 sm:space-x-2">
+            <span class="shrink-0">On this page</span>
             <ChevronRightSVG
-              class="text-gray-400 size-3 [details[open]_&]:rotate-90"
+              class="shrink-0 text-gray-300 size-3 [details[open]_&]:rotate-90"
             />
-            <span class="display-current"></span>
+            <span class="display-current truncate"></span>
           </div>
         </summary>
         <div
-          class="absolute w-full left-0 bg-white shadow-lg px-4 sm:px-8 pb-2 [&_li:not(:last-of-type)]:border-b [&_li:not(:last-of-type)]:border-gray-100"
+          class="max-h-[45dvh] overflow-y-auto overscroll-contain absolute w-full left-0 bg-white shadow-lg px-4 sm:px-8 pb-2 [&_li:not(:last-of-type)]:border-b [&_li:not(:last-of-type)]:border-gray-100"
         >
           <TableOfContentsList isMobile toc={toc.items} />
+          <div class="mt-4">
+            <a
+              class="text-gray-600 text-sm flex items-center space-x-1.5 py-2"
+              href="/experience"
+            >
+              <span> Back to list </span>
+              <CircleArrowRightSVG class="size-4 text-gray-400" />
+            </a>
+          </div>
         </div>
       </details>
     </nav>

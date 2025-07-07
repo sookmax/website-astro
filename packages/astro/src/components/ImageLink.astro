@@ -11,7 +11,7 @@ const { image, link } = Astro.props;
 ---
 
 <figure
-  class="not-prose flex flex-col w-full aspect-5/4 sm:aspect-4/3 bg-black rounded-md shadow-md shadow-slate-200 border border-input overflow-hidden"
+  class="group not-prose flex flex-col w-full aspect-5/4 sm:aspect-4/3 bg-black rounded-md shadow-md shadow-slate-200 border border-input overflow-hidden"
 >
   <a
     class="flex-1 min-h-0"
@@ -28,7 +28,7 @@ const { image, link } = Astro.props;
   </a>
   <figcaption class="flex-shrink-0">
     <a
-      class="block w-full text-slate-200 hover:text-emerald-400 text-center px-2 py-1 text-sm border-t border-zinc-700"
+      class="block w-full text-slate-200 group-hover:text-emerald-400 text-center px-2 py-1 text-sm border-t border-zinc-700"
       href={link}
       target="_blank"
       rel="noopener noreferrer"

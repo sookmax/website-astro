@@ -10,7 +10,7 @@ const { class: className, id, ...rest } = Astro.props as Props;
   id={id}
   class={cn([
     "flex items-center text-slate-900",
-    "before:mr-2 before:h-3 before:w-1.5 before:rounded-r-full",
+    "before:shrink-0 before:mr-2 before:h-3 before:w-1.5 before:rounded-r-full",
     "before:bg-primary-light",
     className,
   ])}

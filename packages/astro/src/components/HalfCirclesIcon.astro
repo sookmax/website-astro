@@ -1,0 +1,14 @@
+---
+import { cn } from "@website/shared/utils";
+
+type Props = {
+  class?: string;
+};
+
+const { class: className } = Astro.props;
+---
+
+<div class={cn(className, "flex items-center space-x-[1px] bg-transparent")}>
+  <div class="h-3 w-1.5 rounded-l-full bg-slate-200"></div>
+  <div class={cn("h-3 w-1.5 rounded-r-full", className)}></div>
+</div>

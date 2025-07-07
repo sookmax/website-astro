@@ -1,8 +1,8 @@
 ---
 import { cn } from "@website/shared/utils";
 import BreadCrumbDivider from "./BreadCrumbDivider.astro";
-import TinyWaveFormIcon from "./TinyWaveFormIcon.astro";
 import { getBreadcrumbs } from "@/utils/breadcrumbs";
+import HalfCirclesIcon from "./HalfCirclesIcon.astro";
 
 type Props = {
   class?: string;
@@ -14,12 +14,9 @@ const breadcrumbs = getBreadcrumbs(Astro.url.pathname);
 ---
 
 <div class={cn("flex items-center space-x-2", className)}>
-  <TinyWaveFormIcon
-    colors={["fill-slate-300", "fill-primary-base"]}
-    class="h-2.5 w-2.5"
-  />
+  <HalfCirclesIcon class="bg-primary-base" />
   <nav id="main-breadcrumbs" aria-label="Breadcrumb">
-    <ol role="list" class="flex w-full space-x-1 md:space-x-2.5 py-2.5">
+    <ol role="list" class="flex w-full space-x-1 md:space-x-2 py-2.5">
       {
         breadcrumbs.map(({ label, path }, index) => (
           <li class="flex">
@@ -29,7 +26,7 @@ const breadcrumbs = getBreadcrumbs(Astro.url.pathname);
                 href={path}
                 class={cn(
                   "text-sm text-gray-500 font-medium hover:text-primary-base",
-                  index > 0 && "ml-1 md:ml-2.5"
+                  index > 0 && "ml-1 md:ml-2"
                 )}
               >
                 {label}

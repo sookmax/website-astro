@@ -4,6 +4,7 @@ import { cn } from "@website/shared/utils";
 import TableOfContentsList from "./TableOfContentsList.astro";
 import type { HTMLAttributes } from "astro/types";
 import type { TOC } from "@/utils/toc";
+import CircleArrowRightSVG from "@website/shared/svg/circle-arrow-right.svg";
 
 type Props = HTMLAttributes<"nav"> & {
   toc: TOC;
@@ -17,12 +18,16 @@ const { toc, class: className, ...props } = Astro.props;
   data-min-h={toc.options.minHeadingLevel}
   data-max-h={toc.options.maxHeadingLevel}
 >
-  <nav class={cn(className)} {...props}>
-    <h2 class="font-medium flex space-x-1">
-      <span>On this page</span>
-    </h2>
+  <nav class={cn("space-y-4", className)} {...props}>
+    <h2 class="font-medium">On this page</h2>
     <div class="ml-2">
       <TableOfContentsList toc={toc.items} />
+    </div>
+    <div>
+      <a class="flex items-center space-x-1.5" href="/experience">
+        <span class="text-gray-600">Back to list</span>
+        <CircleArrowRightSVG class="size-4 text-gray-400" />
+      </a>
     </div>
   </nav>
 </starlight-toc>

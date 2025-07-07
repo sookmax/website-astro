@@ -34,7 +34,7 @@ const { Content, headings } = await render(experience);
 
 // https://developer.mozilla.org/en-US/docs/Web/HTML/Reference/Elements/a#linking_to_an_element_on_the_same_page
 const toc = generateToc([
-  { depth: 2, slug: PAGE_TITLE_ID, text: "Title" },
+  { depth: 2, slug: PAGE_TITLE_ID, text: "Overview" },
   ...headings,
 ]);
 ---
@@ -69,30 +69,32 @@ const toc = generateToc([
                 location={experience.data.location}
               />
             </div>
-            <div class="not-prose flex items-center justify-between">
+            <div class="not-prose">
               <h1
                 id={PAGE_TITLE_ID}
-                class="text-2xl lg:text-3xl font-bold text-slate-900 scroll-m-52 xl:scroll-m-30"
+                class="flex items-center justify-between text-xl lg:text-3xl font-bold text-slate-900 scroll-m-52 xl:scroll-m-30"
               >
-                {experience.data.title}
+                <span>{experience.data.title}</span>
+                {
+                  experience.data.at && experience.data.atURL && (
+                    <span>
+                      <a
+                        class="text-primary-base hover:text-primary-dark"
+                        title={experience.data.at}
+                        href={experience.data.atURL}
+                        target="_blank"
+                        rel="noopener noreferrer"
+                      >
+                        <ExternalLinkSVG class="size-4" />
+                      </a>
+                    </span>
+                  )
+                }
               </h1>
-              {
-                experience.data.at && experience.data.atURL && (
-                  <a
-                    class="text-primary-base hover:text-primary-dark"
-                    title={experience.data.at}
-                    href={experience.data.atURL}
-                    target="_blank"
-                    rel="noopener noreferrer"
-                  >
-                    <ExternalLinkSVG class="size-4" />
-                  </a>
-                )
-              }
+              <p class="mt-3 text-lg/8 font-medium text-slate-600">
+                {experience.data.description}
+              </p>
             </div>
-            <p class="not-prose mt-3 text-lg/8 font-medium text-slate-600">
-              {experience.data.description}
-            </p>
           </header>
           <hr class="border-slate-200" />
           <Content
@@ -107,7 +109,7 @@ const toc = generateToc([
       </Container>
     </div>
     <aside
-      class="hidden xl:flex-[0.3] xl:block xl:sticky xl:top-8 xl:min-w-60 2xl:min-w-72 xl:h-fit xl:px-5 xl:py-3"
+      class="hidden xl:flex-[0.3] xl:block xl:sticky xl:top-8 xl:min-w-60 2xl:min-w-72 xl:h-fit xl:px-4 xl:py-3"
     >
       <TableOfContents toc={toc} />
     </aside>
