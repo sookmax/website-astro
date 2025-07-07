@@ -138,7 +138,7 @@ function ImageGalleryImpl({
           />
         ) : (
           <a
-            className="block relative max-h-full"
+            className="relative flex items-center justify-center h-full cursor-zoom-in"
             href={activeImage.src}
             target="_blank"
             rel="noopener noreferrer"
