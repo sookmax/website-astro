@@ -104,7 +104,7 @@ export class StarlightTOC extends HTMLElement {
         observer = undefined;
       }
       clearTimeout(timeout);
-      timeout = setTimeout(() => this.onIdle(observe), 200);
+      timeout = setTimeout(() => this.onIdle(observe), 100);
     });
   };
 

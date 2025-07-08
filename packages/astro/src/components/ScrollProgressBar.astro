@@ -12,7 +12,7 @@ const { class: className } = Astro.props;
   class={cn("block w-full h-0.5 bg-slate-100 overflow-hidden", className)}
 >
   <div
-    class="progress-bar h-full bg-pink-400 origin-left transition-transform duration-100 ease-out"
+    class="progress-bar h-full bg-pink-400 scale-x-0 origin-left transition-transform duration-75 ease-out will-change-transform"
   >
   </div>
 </scroll-progress-bar>
@@ -31,9 +31,8 @@ const { class: className } = Astro.props;
                 document.documentElement.scrollHeight -
                 (window.visualViewport?.height ??
                   document.documentElement.clientHeight);
-              const progress = (scrollTop / docHeight) * 100;
-              (progressBar as HTMLElement).style.transform =
-                `scaleX(${progress / 100})`;
+              const progress = scrollTop / docHeight;
+              (progressBar as HTMLElement).style.scale = `${progress} 1`;
               (progressBar as HTMLElement).dataset.progress =
                 progress.toString();
               requested = false;
