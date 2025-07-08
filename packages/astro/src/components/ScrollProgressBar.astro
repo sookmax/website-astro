@@ -1,0 +1,51 @@
+---
+import { cn } from "@website/shared/utils";
+
+type Props = {
+  class?: string;
+};
+
+const { class: className } = Astro.props;
+---
+
+<scroll-progress-bar
+  class={cn("block w-full h-0.5 bg-slate-100 overflow-hidden", className)}
+>
+  <div
+    class="progress-bar h-full bg-pink-400 origin-left transition-transform duration-100 ease-out"
+  >
+  </div>
+</scroll-progress-bar>
+
+<script>
+  class ScrollProgressBar extends HTMLElement {
+    connectedCallback() {
+      const progressBar = this.querySelector(".progress-bar");
+      if (progressBar) {
+        let requested = false;
+        const updateProgress = () => {
+          if (!requested) {
+            requestAnimationFrame(() => {
+              const scrollTop = document.documentElement.scrollTop;
+              const docHeight =
+                document.documentElement.scrollHeight -
+                (window.visualViewport?.height ??
+                  document.documentElement.clientHeight);
+              const progress = (scrollTop / docHeight) * 100;
+              (progressBar as HTMLElement).style.transform =
+                `scaleX(${progress / 100})`;
+              (progressBar as HTMLElement).dataset.progress =
+                progress.toString();
+              requested = false;
+            });
+          }
+        };
+
+        window.addEventListener("scroll", updateProgress);
+        window.addEventListener("resize", updateProgress);
+        updateProgress(); // Initial call to set the progress bar on load
+      }
+    }
+  }
+  customElements.define("scroll-progress-bar", ScrollProgressBar);
+</script>

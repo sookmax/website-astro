@@ -83,7 +83,7 @@ export class StarlightTOC extends HTMLElement {
     // Also observe direct children of `.content` to include elements before
     // the first heading.
     const toObserve = document.querySelectorAll(
-      "main article [id], main article [id] ~ *",
+      "main article header > *, main article [id], main article [id] ~ *",
     );
 
     let observer: IntersectionObserver | undefined;
@@ -123,7 +123,8 @@ export class StarlightTOC extends HTMLElement {
     const top = navBarHeight + mobileTocHeight;
     /** End intersections `53px` later. This is slightly more than the maximum `margin-top` in Markdown content. */
     const bottom = top + 50;
-    const height = document.documentElement.clientHeight;
+    const height =
+      window.visualViewport?.height || document.documentElement.clientHeight;
     return `-${top}px 0% ${bottom - height}px`;
   }
 }

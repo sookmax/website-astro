@@ -8,6 +8,6 @@ type Props = {
 const { class: className } = Astro.props;
 ---
 
-<main class={cn("border-t border-gray-200", className)}>
+<main class={cn(className)}>
   <slot />
 </main>
