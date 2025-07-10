@@ -2,7 +2,8 @@
 // You can import this data from anywhere in your site by using the `import` keyword.
 
 export const SITE_TITLE = "sook.dev";
-export const SITE_DESCRIPTION = "Hi, I'm Sook. A web devloper.";
+export const SITE_DESCRIPTION = "Sukkyu Chung's personal website";
+export const SITE_OG_IMAGE = "/og_image.png";
 export const ASSETS_BASE_URL = "https://assets.sook.dev/";
 
 export function GET_BADGE_STYLE(type: string) {

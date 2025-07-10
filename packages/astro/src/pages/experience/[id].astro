@@ -33,6 +33,10 @@ export const getStaticPaths = (async () => {
 const { experience } = Astro.props;
 const { Content, headings } = await render(experience);
 
+const PAGE_TITLE = experience.data.at
+  ? `${experience.data.title} at ${experience.data.at}`
+  : experience.data.title;
+
 // https://developer.mozilla.org/en-US/docs/Web/HTML/Reference/Elements/a#linking_to_an_element_on_the_same_page
 const toc = generateToc([
   { depth: 2, slug: PAGE_TITLE_ID, text: "Overview" },
@@ -40,7 +44,7 @@ const toc = generateToc([
 ]);
 ---
 
-<RootLayout>
+<RootLayout title={PAGE_TITLE} description={experience.data.description}>
   <div class="xl:flex xl:divide-x xl:divide-slate-200 dark:xl:divide-slate-800">
     <div class="relative flex-1 min-w-0 flex flex-col items-center">
       <ScrollProgressBar class="sticky top-0 z-20" />

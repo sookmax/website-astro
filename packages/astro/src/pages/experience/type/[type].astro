@@ -28,6 +28,8 @@ export const getStaticPaths = (async () => {
 const { type } = Astro.params;
 const { experiences } = Astro.props;
 
+const PAGE_TITLE = `Experience - ${type.charAt(0).toUpperCase() + type.slice(1)}`;
+
 const experiencesFiltered = experiences.filter(
   (item) => item.data.type.toLowerCase() === type
 );
@@ -35,7 +37,7 @@ const experiencesFiltered = experiences.filter(
 const typeCounts = getExperienceTypeCounts(experiences);
 ---
 
-<ExperienceListLayout>
+<ExperienceListLayout title={PAGE_TITLE}>
   <ExperienceTypeList
     slot="experience-type-list"
     activeType={type}

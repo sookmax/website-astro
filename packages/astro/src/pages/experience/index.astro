@@ -12,7 +12,10 @@ const experiences = sortExperiencesByDate(await getCollection("experience"));
 const typeCounts = getExperienceTypeCounts(experiences);
 ---
 
-<ExperienceListLayout>
+<ExperienceListLayout
+  title="Experience"
+  description="List of my experiences in data analysis and web development."
+>
   <ExperienceTypeList slot="experience-type-list" typeCounts={typeCounts} />
   <ExperienceList slot="experience-list" items={experiences} />
 </ExperienceListLayout>
