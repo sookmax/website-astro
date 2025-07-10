@@ -5,12 +5,12 @@ import {
   SquareArrowOutUpRightIcon,
   XIcon,
 } from "lucide-react";
-import { Button } from "./Button";
 import { cn } from "@website/shared/utils";
 import React, { useCallback, useRef, useState } from "react";
 import { Spinner } from "./Spinner";
 import { Dialog, DialogClose, DialogContent, DialogTitle } from "./Dialog";
 import { VisuallyHidden } from "@radix-ui/react-visually-hidden";
+import { Button } from "./Button";
 
 export function ImageGallery({
   images,
@@ -121,7 +121,7 @@ function ImageGalleryImpl({
       className={cn(
         "not-prose flex flex-col bg-black overflow-hidden",
         galleryType === "inline" &&
-          "w-full aspect-5/4 sm:aspect-4/3 rounded-md shadow-md shadow-slate-200 border border-gray-100",
+          "w-full aspect-5/4 sm:aspect-4/3 rounded-md shadow-sm shadow-slate-200 dark:shadow-slate-900 border border-slate-100 dark:border-slate-800",
         galleryType === "fullscreen" && "w-screen h-screen",
       )}
     >
@@ -154,35 +154,28 @@ function ImageGalleryImpl({
         {/* Navigation buttons */}
         {images.length > 1 && (
           <Button
-            variant="outline"
-            size="icon"
-            className="absolute left-3 top-1/2 -translate-y-1/2 shadow-md"
+            className="absolute left-1 md:left-3 top-1/2 -translate-y-1/2 shadow-sm shadow-slate-400 dark:shadow-slate-700 size-7 md:size-9 rounded-md bg-slate-50 dark:bg-slate-900 border border-slate-100 dark:border-slate-700"
             aria-label="Previous image"
             onClick={prevImage}
           >
-            <ChevronLeft className="h-6 w-6" />
+            <ChevronLeft className="size-5 text-slate-700 dark:text-slate-200" />
           </Button>
         )}
 
         {images.length > 1 && (
           <Button
-            variant="outline"
-            size="icon"
-            className="absolute right-3 top-1/2 -translate-y-1/2 shadow-md"
+            className="absolute right-1 md:right-3 top-1/2 -translate-y-1/2 shadow-sm shadow-slate-400 dark:shadow-slate-700 size-7 md:size-9 rounded-md bg-slate-50 dark:bg-slate-900 border border-slate-100 dark:border-slate-700"
             aria-label="Next image"
             onClick={nextImage}
           >
-            <ChevronRight className="h-6 w-6" />
+            <ChevronRight className="size-5 text-slate-700 dark:text-slate-200" />
           </Button>
         )}
 
         {galleryType === "inline" ? (
           <>
             <Button
-              asChild
-              variant="outline"
-              size="icon"
-              className="inline-flex md:hidden absolute top-3 right-3 shadow-md"
+              className="md:hidden absolute top-1 right-1 shadow-sm shadow-slate-400 dark:shadow-slate-700 size-7 md:size-9 rounded-md bg-slate-50 dark:bg-slate-900 border border-slate-100 dark:border-slate-700"
               aria-label="Open the original image in a new tab"
             >
               <a
@@ -190,27 +183,21 @@ function ImageGalleryImpl({
                 target="_blank"
                 rel="noopener noreferrer"
               >
-                <SquareArrowOutUpRightIcon className="h-5 w-5" />
+                <SquareArrowOutUpRightIcon className="size-4 text-slate-700 dark:text-slate-200" />
               </a>
             </Button>
             <Button
-              variant="outline"
-              size="icon"
-              className="hidden md:inline-flex absolute top-3 right-3 shadow-md"
+              className="hidden md:flex absolute top-3 right-3 shadow-sm shadow-slate-400 dark:shadow-slate-700 size-7 md:size-9 rounded-md bg-slate-50 dark:bg-slate-900 border border-slate-100 dark:border-slate-700"
               aria-label="Toggle fullscreen"
               onClick={onFullScreenClick}
             >
-              <Maximize className="h-5 w-5" />
+              <Maximize className="size-5 text-slate-700 dark:text-slate-200" />
             </Button>
           </>
         ) : (
           <DialogClose asChild>
-            <Button
-              variant="outline"
-              size="icon"
-              className="absolute right-3 top-3"
-            >
-              <XIcon className="h-5 w-5" />
+            <Button className="absolute right-3 top-3 shadow-sm shadow-slate-400 dark:shadow-slate-700 size-7 md:size-9 rounded-md bg-slate-50 dark:bg-slate-900 border border-slate-100 dark:border-slate-700">
+              <XIcon className="size-5 text-slate-700 dark:text-slate-200" />
               <span className="sr-only">Close</span>
             </Button>
           </DialogClose>
@@ -225,7 +212,7 @@ function ImageGalleryImpl({
             <button
               key={image.src}
               className={cn(
-                "relative cursor-pointer aspect-5/3 flex-shrink-0 border border-gray-500 rounded-sm",
+                "relative cursor-pointer aspect-5/3 flex-shrink-0 border border-slate-500 rounded-sm",
                 galleryType === "inline" && "w-24 sm:w-28",
                 galleryType === "fullscreen" && "w-36",
                 idx === activeImageIndex ? "brightness-100" : "brightness-50",
@@ -235,7 +222,7 @@ function ImageGalleryImpl({
               }}
             >
               <div className="absolute inset-0 flex items-center justify-center">
-                <Spinner color="var(--color-gray-100)" />
+                <Spinner color="var(--color-slate-100)" />
               </div>
               <img
                 className="w-full h-full object-cover relative rounded-sm"

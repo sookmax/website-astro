@@ -3,25 +3,62 @@ import { cn } from "@website/shared/utils";
 import AboutSection from "./AboutSection.astro";
 import AvatarImage from "./AvatarImage.astro";
 import ConnectSection from "./ConnectSection.astro";
+import WaveForm from "./WaveForm.astro";
+import WaveFormDark from "./WaveFormDark.astro";
 
 type Props = {
   class?: string;
+  mobile?: boolean;
 };
 
-const { class: className } = Astro.props;
+const { class: className, mobile = false } = Astro.props;
+
+const waveformId = mobile
+  ? "mobile-header-waveform"
+  : "desktop-header-waveform";
+
+const waveformDarkId = mobile
+  ? "mobile-header-waveform-dark"
+  : "desktop-header-waveform-dark";
+
+const date = new Date();
+const currentYear = date.getFullYear();
 ---
 
-<div class={cn("space-y-5", className)}>
+<div class={cn("relative space-y-5", className)}>
+  <WaveForm
+    id={waveformId}
+    class="dark:hidden absolute top-0 left-0 h-20 w-full"
+  />
+  <WaveFormDark
+    id={waveformDarkId}
+    class="hidden dark:block absolute top-0 left-0 h-20 w-full"
+  />
   <div class="space-y-5">
     <AvatarImage />
     <div class="text-center">
       <p class="flex flex-col">
-        <span class="text-xl font-bold text-gray-900">Hi, I'm Sook.</span>
-        <span class="text-lg/8 font-medium text-gray-700">A web developer.</span
+        <span class="text-xl font-bold text-slate-900 dark:text-slate-50"
+          >Hi, I'm Sook.</span
+        >
+        <span class="text-lg/8 font-medium text-slate-700 dark:text-slate-300"
+          >A web developer.</span
         >
       </p>
     </div>
   </div>
   <AboutSection />
   <ConnectSection />
+  <div
+    class={cn(
+      mobile ? "block" : "hidden",
+      "mt-10 text-left text-xs font-mono text-slate-400 dark:text-slate-300"
+    )}
+  >
+    <span
+      >&copy; <time data-id="current-year" datetime={date.toISOString()}
+        >{currentYear}</time
+      > Sukkyu Chung.</span
+    >
+  </div>
 </div>

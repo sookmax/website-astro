@@ -9,10 +9,13 @@ const { class: className } = Astro.props;
 ---
 
 <scroll-progress-bar
-  class={cn("block w-full h-0.5 bg-slate-100 overflow-hidden", className)}
+  class={cn(
+    "block w-full h-0.5 bg-slate-100 dark:bg-slate-700 overflow-hidden",
+    className
+  )}
 >
   <div
-    class="progress-bar h-full bg-pink-400 scale-x-0 origin-left transition-transform duration-75 ease-out will-change-transform"
+    class="progress-bar h-full bg-pink-400 dark:bg-pink-300 scale-x-0 origin-left transition-transform duration-75 ease-out will-change-transform"
   >
   </div>
 </scroll-progress-bar>

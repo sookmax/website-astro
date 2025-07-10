@@ -15,7 +15,7 @@ const currentYear = date.getFullYear();
 
 <nav
   class={cn([
-    "bg-gradient-to-b from-indigo-600 from-10% via-primary-base via-50% to-emerald-500 to-90%",
+    "bg-gradient-to-b from-indigo-600 dark:from-indigo-300 from-10% via-primary-base dark:via-primary-light via-50% to-emerald-500 dark:to-emerald-300 to-90%",
     className,
   ])}
 >
@@ -25,9 +25,12 @@ const currentYear = date.getFullYear();
         breadcrumbs.map(({ label, path }, index) => (
           <li class="flex items-center space-x-2">
             {index > 0 && (
-              <BreadCrumbDivider class="-rotate-90 text-gray-200/50" />
+              <BreadCrumbDivider class="-rotate-90 text-slate-200/50 dark:text-slate-600" />
             )}
-            <a href={path} class="text-slate-200 flex items-center gap-1.5">
+            <a
+              href={path}
+              class="text-slate-200 dark:text-slate-900 flex items-center gap-1.5"
+            >
               {label}
             </a>
           </li>
@@ -35,7 +38,7 @@ const currentYear = date.getFullYear();
       }
     </ol>
   </div>
-  <div class="text-slate-200 [writing-mode:sideways-rl]">
+  <div class="text-slate-200 dark:text-slate-900 [writing-mode:sideways-rl]">
     <span>&copy; {currentYear} Sukkyu Chung</span>
   </div>
 </nav>

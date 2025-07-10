@@ -1,9 +1,9 @@
 ---
 import type { CollectionEntry } from "astro:content";
 import Badge from "./Badge.astro";
-import ExternalLinkSVG from "@/images/external-link.svg";
 import { GET_BADGE_STYLE } from "@/consts";
 import DateAndLocation from "./DateAndLocation.astro";
+import ExperienceAtUrl from "./ExperienceAtUrl.astro";
 
 type Props = {
   experience: CollectionEntry<"experience">;
@@ -24,47 +24,43 @@ const { experience } = Astro.props;
     />
     <h2
       id={`experience-${experience.id}-title`}
-      class="w-full text-lg font-bold text-slate-900 flex items-center justify-between"
+      class="w-full text-lg font-bold text-slate-900 dark:text-slate-50"
     >
-      <a
-        href={`/experience/${experience.id}`}
-        class="flex flex-col items-start sm:flex-row sm:items-center gap-1.5"
-      >
-        <Badge dot={false} style={GET_BADGE_STYLE(experience.data.type)}>
-          {experience.data.type}
-        </Badge>
-        <span>{experience.data.title}</span>
-      </a>
-      {
-        experience.data.at && experience.data.atURL && (
-          <a
-            class="text-primary-base hover:text-primary-dark"
-            title={experience.data.at}
-            href={experience.data.atURL}
-            target="_blank"
-            rel="noopener noreferrer"
-          >
-            <ExternalLinkSVG class="size-4" />
-          </a>
-        )
-      }
+      <Badge dot={false} style={GET_BADGE_STYLE(experience.data.type)}>
+        {experience.data.type}
+      </Badge>
+      <div class="flex items-center flex-wrap gap-1">
+        <a href={`/experience/${experience.id}`} class="group">
+          <span class="group-hover:underline">{experience.data.title}</span>
+        </a>
+        {
+          experience.data.at && experience.data.atURL && (
+            <ExperienceAtUrl
+              at={experience.data.at}
+              atURL={experience.data.atURL}
+            />
+          )
+        }
+      </div>
     </h2>
     {
       experience.data.tags && (
         <div class="flex flex-wrap gap-1">
           {experience.data.tags.map((tag) => (
-            <Badge>{tag}</Badge>
+            <Badge dot size="small">
+              {tag}
+            </Badge>
           ))}
         </div>
       )
     }
-    <p class="text-base/7 text-slate-700">
+    <p class="xl:text-base/7 text-slate-700 dark:text-slate-100">
       {experience.data.description}
     </p>
     <div class="flex items-center gap-4">
       <a
         href={`/experience/${experience.id}`}
-        class="flex items-center text-sm/6 font-bold text-primary-base hover:text-primary-dark"
+        class="flex items-center text-sm/6 font-bold text-primary-base dark:text-primary-light hover:text-primary-dark dark:hover:text-primary-extralight"
         aria-label={`Show notes for experience: ${experience.data.title}`}
       >
         Read more →

@@ -14,7 +14,7 @@ const breadcrumbs = getBreadcrumbs(Astro.url.pathname);
 ---
 
 <div class={cn("flex items-center space-x-2", className)}>
-  <HalfCirclesIcon class="bg-primary-base" />
+  <HalfCirclesIcon class="bg-primary-base dark:bg-primary-light" />
   <nav id="main-breadcrumbs" aria-label="Breadcrumb">
     <ol role="list" class="flex w-full space-x-1 md:space-x-2 py-2.5">
       {
@@ -25,7 +25,7 @@ const breadcrumbs = getBreadcrumbs(Astro.url.pathname);
               <a
                 href={path}
                 class={cn(
-                  "text-sm text-gray-500 font-medium hover:text-primary-base",
+                  "text-sm text-gray-500 dark:text-gray-200 font-medium hover:text-primary-base",
                   index > 0 && "ml-1 md:ml-2"
                 )}
               >

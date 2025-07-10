@@ -9,16 +9,19 @@ type Props = HTMLAttributes<"section">;
 <about-section class="block">
   <section {...Astro.props}>
     <h2
-      class="flex items-center font-mono text-sm/7 font-medium text-slate-900"
+      class="flex items-center font-mono text-sm/7 font-medium text-slate-900 dark:text-slate-100"
     >
       <TinyWaveFormIcon
-        colors={["fill-slate-300", "fill-primary-base"]}
+        colors={[
+          "fill-slate-300 dark:fill-slate-50",
+          "fill-primary-base dark:fill-primary-light",
+        ]}
         class="h-2.5 w-2.5"
       />
       <span class="ml-2.5">About</span>
     </h2>
     <div
-      class="about-text mt-2 text-sm/relaxed 2xl:text-base text-slate-700 line-clamp-3 xl:line-clamp-5 space-y-3.5"
+      class="about-text mt-2 text-sm/relaxed 2xl:text-base text-slate-700 dark:text-slate-300 line-clamp-3 xl:line-clamp-5 space-y-3.5"
     >
       <p>
         I wandered in from the world of data, stumbled around, and stayed for
@@ -61,7 +64,7 @@ type Props = HTMLAttributes<"section">;
     </div>
     <button
       type="button"
-      class="cursor-pointer mt-2 text-sm/6 font-bold text-primary-base hover:text-primary-dark"
+      class="cursor-pointer mt-2 text-sm/6 font-bold text-primary-base dark:text-primary-light hover:text-primary-dark dark:hover:text-primary-extralight"
     >
       Show more
     </button>

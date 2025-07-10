@@ -8,14 +8,22 @@ type Props = HTMLAttributes<"section">;
 ---
 
 <section {...Astro.props}>
-  <h2 class="flex items-center font-mono text-sm/7 font-medium text-slate-900">
+  <h2
+    class="flex items-center font-mono text-sm/7 font-medium text-slate-900 dark:text-slate-100"
+  >
     <TinyWaveFormIcon
-      colors={["fill-slate-300", "fill-emerald-500"]}
+      colors={[
+        "fill-slate-300 dark:fill-slate-50",
+        "fill-emerald-500  dark:fill-emerald-400",
+      ]}
       class="h-2.5 w-2.5"
     />
     <span class="ml-2.5">Connect</span>
   </h2>
-  <ul role="list" class="mt-4 flex gap-10 font-medium text-slate-700">
+  <ul
+    role="list"
+    class="mt-4 flex gap-10 font-medium text-slate-700 dark:text-slate-200"
+  >
     {
       (
         [
@@ -34,8 +42,10 @@ type Props = HTMLAttributes<"section">;
             class="group/social-link flex items-center space-x-2"
             aria-label={label}
           >
-            <Icon class="size-6 fill-slate-400 group-hover/social-link:fill-slate-600" />
-            <span class="text-sm text-gray-600">{label}</span>
+            <Icon class="size-6 fill-slate-400 dark:fill-slate-300 group-hover/social-link:fill-slate-600 dark:group-hover/social-link:fill-slate-100" />
+            <span class="text-sm text-gray-600 dark:text-gray-300">
+              {label}
+            </span>
           </a>
         </li>
       ))

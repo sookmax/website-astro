@@ -15,7 +15,7 @@ const { activeType, typeCounts } = Astro.props;
 ---
 
 <div class="px-2.5 py-2.5 flex items-center gap-x-2.5">
-  <HalfCirclesIcon class="bg-indigo-500" />
+  <HalfCirclesIcon class="bg-indigo-500 dark:bg-indigo-300" />
   <ul class="flex items-center gap-1.5">
     {
       [...typeCounts.entries()]
@@ -35,7 +35,7 @@ const { activeType, typeCounts } = Astro.props;
                     {type} ({count})
                   </span>
                   {type.toLowerCase() === activeType?.toLowerCase() && (
-                    <CircleSVG class="absolute top-[-1px] right-[-1px] size-1.5 fill-rose-600" />
+                    <CircleSVG class="absolute top-[-1px] right-[-1px] size-1.5 fill-rose-600 dark:fill-rose-500" />
                   )}
                 </Badge>
               </a>

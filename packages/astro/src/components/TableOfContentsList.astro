@@ -13,7 +13,11 @@ const { toc, isMobile = false, depth = 0 } = Astro.props;
 ---
 
 <ul
-  class={cn("text-gray-700", depth > 0 && "pl-4", isMobile && "w-full")}
+  class={cn(
+    "text-slate-700 dark:text-slate-200",
+    depth > 0 && "pl-4",
+    isMobile && "w-full"
+  )}
   style={{ "--depth": depth }}
 >
   {
@@ -22,9 +26,9 @@ const { toc, isMobile = false, depth = 0 } = Astro.props;
         <li>
           <a
             class={cn(
-              "flex py-1 hover:text-emerald-500",
-              isMobile && "py-2 text-sm text-gray-500",
-              "aria-[current=true]:font-medium aria-[current=true]:text-emerald-600"
+              "flex py-1 hover:text-emerald-500 dark:hover:text-emerald-300",
+              isMobile && "py-2 text-sm",
+              "aria-[current=true]:font-medium aria-[current=true]:text-emerald-600 dark:aria-[current=true]:text-emerald-300"
             )}
             href={`#${heading.slug}`}
           >
@@ -40,7 +44,7 @@ const { toc, isMobile = false, depth = 0 } = Astro.props;
                   "hidden [a[aria-current='true']_&]:block xl:[a[aria-current='true']_&]:hidden"
                 )}
               >
-                <CircleSVG class="size-1.5 fill-emerald-500" />
+                <CircleSVG class="size-1.5 fill-emerald-500 dark:fill-emerald-300" />
               </span>
             </span>
           </a>

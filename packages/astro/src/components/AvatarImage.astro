@@ -14,14 +14,14 @@ const { class: className } = Astro.props;
   <a
     href="/"
     class={cn(
-      "relative mx-auto block w-48 overflow-hidden rounded-lg bg-slate-100 shadow-xl shadow-slate-200 xl:w-auto xl:rounded-2xl xl:max-w-72",
+      "relative mx-auto block w-48 overflow-hidden rounded-lg bg-slate-100 dark:bg-slate-900 shadow-slate-200 dark:shadow-slate-900 shadow-xl xl:w-auto xl:rounded-2xl xl:max-w-72",
       className
     )}
     aria-label="Homepage"
   >
     <Image class="w-full" src={avatar2dImage} alt="main avatar picture" />
     <div
-      class="absolute inset-0 rounded-lg ring-1 ring-black/10 ring-inset sm:rounded-xl lg:rounded-2xl"
+      class="absolute inset-0 rounded-lg ring-1 ring-black/10 dark:ring-gray-50/10 ring-inset sm:rounded-xl lg:rounded-2xl"
     >
     </div>
   </a>

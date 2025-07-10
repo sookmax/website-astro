@@ -11,9 +11,9 @@ const { class: className, id, ...rest } = Astro.props as Props;
   id={id}
   class={cn([
     "scroll-m-28 xl:scroll-m-8 text-xl 2xl:text-2xl",
-    "flex items-center text-slate-900",
+    "flex items-center text-slate-900 dark:text-slate-50",
     "before:shrink-0 before:mr-2 before:h-4 before:w-2 before:rounded-r-full",
-    "before:bg-indigo-500",
+    "before:bg-indigo-500 dark:before:bg-indigo-300",
     className,
   ])}
   {...rest}

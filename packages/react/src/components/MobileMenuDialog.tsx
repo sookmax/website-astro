@@ -20,20 +20,18 @@ export function MobileMenuDialog({
         {triggerIcon}
       </DialogTrigger>
       <DialogContent
-        className="border-0 p-0 w-full max-w-none sm:max-w-xl md:max-w-2xl overflow-hidden bg-slate-50"
+        className="border-0 p-0 w-full max-w-none sm:max-w-xl md:max-w-2xl overflow-hidden bg-slate-50 dark:bg-slate-950"
         closeButton={false}
         aria-describedby={undefined}
       >
         <VisuallyHidden asChild>
           <DialogTitle>Mobile menu dialog content</DialogTitle>
         </VisuallyHidden>
-        <DialogClose className="z-10 absolute right-3 top-3 ring-offset-background transition-opacity hover:opacity-100 focus:outline-none disabled:pointer-events-none">
-          <XIcon className="size-6 text-gray-400/80" />
+        <DialogClose className="z-10 absolute right-1 top-1 p-2 focus:outline-none">
+          <XIcon className="size-5 text-gray-400/80 dark:text-slate-300/80" />
           <span className="sr-only">Close</span>
         </DialogClose>
-        <div className="max-h-[88dvh] overflow-y-auto px-4 sm:px-10 md:px-24">
-          {content}
-        </div>
+        <div className="max-h-[85dvh] overflow-y-auto">{content}</div>
       </DialogContent>
     </Dialog>
   );

@@ -4,8 +4,8 @@ import TableOfContentsList from "./TableOfContentsList.astro";
 import type { HTMLAttributes } from "astro/types";
 import type { TOC } from "@/utils/toc";
 import { cn } from "@website/shared/utils";
-import CircleArrowRightSVG from "@website/shared/svg/circle-arrow-right.svg";
 import HalfCirclesIcon from "./HalfCirclesIcon.astro";
+import BackToExperienceListLink from "./BackToExperienceListLink.astro";
 
 type Props = HTMLAttributes<"nav"> & {
   toc: TOC;
@@ -19,7 +19,7 @@ const { toc, class: className, ...props } = Astro.props as Props;
   data-max-h={toc.options.maxHeadingLevel}
 >
   <div class="flex items-center space-x-2">
-    <HalfCirclesIcon class="bg-emerald-500" />
+    <HalfCirclesIcon class="bg-emerald-500 dark:bg-emerald-300" />
     <nav
       aria-labelledby="starlight__on-this-page--mobile"
       class={cn(className, "flex-1 min-w-0 select-none")}
@@ -28,28 +28,24 @@ const { toc, class: className, ...props } = Astro.props as Props;
       <details id="starlight__mobile-toc">
         <summary
           id="starlight__on-this-page--mobile"
-          class="cursor-pointer py-2.5 flex items-center list-none [&::-webkit-details-marker]:hidden text-sm font-medium text-gray-500"
+          class="cursor-pointer py-2.5 flex items-center list-none [&::-webkit-details-marker]:hidden text-sm font-medium text-slate-500 dark:text-slate-200"
         >
           <div class="max-w-full flex items-center space-x-1 sm:space-x-2">
             <span class="shrink-0">On this page</span>
             <ChevronRightSVG
-              class="shrink-0 text-gray-300 size-3 [details[open]_&]:rotate-90"
+              class="shrink-0 text-slate-300 size-3 [details[open]_&]:rotate-90"
             />
             <span class="display-current truncate"></span>
           </div>
         </summary>
         <div
-          class="max-h-[45dvh] overflow-y-auto overscroll-contain absolute w-full left-0 bg-white shadow-lg px-4 sm:px-8 pb-2 [&_li:not(:last-of-type)]:border-b [&_li:not(:last-of-type)]:border-gray-100"
+          class="max-h-[45dvh] overflow-y-auto overscroll-contain absolute w-full left-0 bg-white dark:bg-slate-900 shadow-md shadow-slate-200 dark:shadow-slate-800 px-4 sm:px-8 pb-4 [&_li:not(:last-of-type)]:border-b [&_li:not(:last-of-type)]:border-slate-100 dark:[&_li:not(:last-of-type)]:border-slate-700"
         >
           <TableOfContentsList isMobile toc={toc.items} />
-          <div class="mt-4">
-            <a
-              class="text-gray-600 text-sm flex items-center space-x-1.5 py-2"
-              href="/experience"
-            >
-              <span> Back to list </span>
-              <CircleArrowRightSVG class="size-4 text-gray-400" />
-            </a>
+          <div
+            class="text-sm border-t border-slate-100 dark:border-slate-700 py-4"
+          >
+            <BackToExperienceListLink />
           </div>
         </div>
       </details>
