@@ -8,7 +8,7 @@ import react from "@astrojs/react";
 
 // https://astro.build/config
 export default defineConfig({
-  site: "https://website-astro-taupe.vercel.app",
+  site: "https://sook.dev",
   integrations: [
     mdx(),
     sitemap(),

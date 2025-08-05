@@ -1,5 +1,6 @@
 ---
 import "@/styles/global.css";
+import Analytics from "@vercel/analytics/astro";
 import BaseHead from "@/components/BaseHead.astro";
 import Header from "@/components/Header.astro";
 import Main from "@/components/Main.astro";
@@ -17,5 +18,6 @@ type Props = ComponentProps<typeof BaseHead>;
     <Main class="pb-24 xl:pb-12 xl:relative xl:ml-[400px] 2xl:ml-[450px]"
       ><slot /></Main
     >
+    <Analytics />
   </body>
 </html>
