@@ -3,7 +3,7 @@ import { cn } from "@website/shared/utils";
 import type { HTMLAttributes } from "astro/types";
 
 type Props = HTMLAttributes<"a">;
-const { class: className, target, ...rest } = Astro.props;
+const { class: className, target, href, ...rest } = Astro.props;
 ---
 
 <a
@@ -12,6 +12,9 @@ const { class: className, target, ...rest } = Astro.props;
     "decoration-dotted hover:decoration-primary-light underline underline-offset-1",
     className
   )}
-  target="_blank"
+  href={href}
+  target={typeof href === "string" && href.startsWith("http")
+    ? "_blank"
+    : undefined}
   {...rest}><slot /></a
 >

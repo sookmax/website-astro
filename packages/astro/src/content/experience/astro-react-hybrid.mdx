@@ -1,0 +1,64 @@
+---
+title: "Using Astro for Static Site Generation and React Pre-rendering"
+description: "Generating static content at build time is almost always a win—and that's exactly what Astro excels at. At the same time, it seamlessly integrates with React, letting you pre-render and hydrate interactive components only where needed. Astro + React hybrid approach brings the best of both worlds—performance and interactivity."
+type: "Project"
+from: 2025-05
+to: 2025-07
+location: "Seoul, South Korea"
+tags:
+  [
+    "Astro",
+    "React",
+    "TanStack Router",
+    "shadcn/ui",
+    "tailwindcss",
+    "pnpm workspace",
+    "mono repo",
+  ]
+---
+
+import ImageGallery from "@/components/ImageGallery.astro";
+
+## 3rd Iteration of My Website
+
+<ImageGallery images={["website-3rd-1.png", "website-2nd-1.png"]} />
+
+One of the first things I wanted to do after [my journey at Medisola](/experience/medisola) ended was to rebuild [my website](https://website-gilt.vercel.app/). The old version followed a format where I separated **current** and **experience** pages: the former documented everything I was doing during [my first sabbatical](/experience/sabbatical), while the latter listed past work experiences. Now, I wanted a single, unified **experience** page that would capture everything I had done—and everything I would do going forward.
+
+The second iteration of my site was built with [Next.js](https://nextjs.org/), which handled all the [MDX](https://mdxjs.com/) contents and [static export](https://nextjs.org/docs/app/guides/static-exports) smoothly. I was well aware that the static parts were pre-generated and my React components were pre-rendered at **build time** with Next.js. However, once I decided to move away from it—main reason being that Next.js's strengths in SSR didn't quite align with my typical use case: building React SPAs—I was left unsure how to process **MDX** and **pre-render** React components at build time without it.
+
+Then, I came across [Astro](https://astro.build/).
+
+Astro is a modern web framework that lets you write HTML, CSS, and JavaScript in a clean, modular way. It supports inline JavaScript expressions, TypeScript, and module imports out of the box. It also offers built-in image optimization, converting PNGs to WebP to reduce file sizes significantly, and integrates seamlessly with both **MDX** and **React**.
+
+Handling the static portions of my site is especially important—most of the content is static, with just a few interactive components like the image gallery. And even those simple interactions, often involving basic DOM APIs, could be implemented directly in Astro without much trouble.
+
+One challenge I ran into while combining Astro and React in a single project was setting up [Storybook](https://storybook.js.org/). There's no official Storybook support for Astro, and installing Storybook for React requires a pre-existing React project structure. As someone who prefers to develop components in isolation, this was a tough compromise. Eventually, I solved it by creating a **monorepo** using [pnpm workspaces](https://pnpm.io/workspaces), where I set up a separate Vite-based Storybook project for React components. These are then imported into the Astro project as needed (though Astro components themselves still lack Storybook support).
+
+While monorepos come with their own challenges—like managing shared configs and types—using pnpm workspaces turned out to be a clean and scalable way to manage a hybrid React + Astro setup.
+
+## 우주부부 web interface (side-project)
+
+<ImageGallery
+  images={[
+    "wzbooboo-1.png",
+    "wzbooboo-2.png",
+    "wzbooboo-3.png",
+    "wzbooboo-4.png",
+  ]}
+/>
+
+While working on my new website, I also had the opportunity to join a side project led by a group of passionate hobbyists. They were looking for a frontend developer to take over their existing codebase and help continue building the [web interface](https://wzbooboo.web.app/) for their mobile app.
+
+The original codebase was a traditional React SPA. But after spending some time reviewing it—both the code and the UI—I saw potential performance gains from applying the **Astro + React hybrid** approach I had been experimenting with on my own site. The React app had many static sections that could be cleanly separated from the interactive parts.
+
+However, there was one key difference: this project used **client-side routing** as well.
+
+At first, I didn't anticipate any major issues adding a client-side router to an Astro + React setup. But I quickly ran into **React hydration errors** when using Astro's default pre-rendering for React components. It turned out [TanStack Router](https://tanstack.com/router/latest)—the client-side router of my choice—requires careful handling when generating the initial HTML and during hydration on the client. These details are usually taken care of by the server side of [TanStack Start](https://tanstack.com/start/latest), but since I wasn't using it, I had to manually reproduce some of that logic in the Astro component responsible for rendering the React app.
+
+This wasn't exactly smooth sailing—some of the key logic I needed wasn't exposed as standalone utilities, so I had to dig into TanStack's internal SSR implementation. I ended up creating a separate [GitHub repository](https://github.com/sookmax/astro-tanstack-router) to document and demonstrate how to set up this kind of Astro + TanStack Router integration.
+
+Looking back, I could've built a full-stack project using **TanStack Start** instead. But beyond the fact that it's still in beta, the main reason I stuck with Astro was its stellar handling of static content. I think this hybrid Astro + TanStack Router approach is still very much worth exploring, especially for projects that need both a pre-renderer for their React SPA and static asset handling (MDX, images, font, etc).
+
+- [🌐 우주부부 web interface](https://wzbooboo.web.app/)
+- [💻 Astro + TanStack Router repo](https://github.com/sookmax/astro-tanstack-router)
